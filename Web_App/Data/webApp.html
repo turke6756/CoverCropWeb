@@ -137,7 +137,6 @@ let UNCERTAIN_THRESHOLD = 0.15; // fallback; will be overridden by manifest if p
         <div class="ctrl"><label><input type="checkbox" id="chkCover4" /> Cover cropped 4+ consecutive seasons</label></div>
         <div class="ctrl"><label><input type="checkbox" id="chkCover5" /> Cover cropped 5+ consecutive seasons</label></div>
         <div class="ctrl"><label><input type="checkbox" id="chkCover6" /> Cover cropped 6+ consecutive seasons</label></div>
-        <div class="ctrl"><label><input type="checkbox" id="chkCover7" /> Cover cropped 7+ consecutive seasons</label></div>
       </div>
     </fieldset>
 
@@ -181,7 +180,7 @@ let UNCERTAIN_THRESHOLD = 0.15; // fallback; will be overridden by manifest if p
     </div>
 
     <div style="margin-top:10px; font-size:11px; color:#94a3b8;">
-      Colors: <span style="color:#2ca25f;">Green = Cover Cropped</span>, <span style="color:#505050;">Gray = Uncertain (≤15% confidence)</span>, <span style="color:#8B4513;">Brown = Bare Soil</span>. Opacity reflects confidence level. <span style="color:#ff4444;">Red</span> = missing data. Statistics exclude uncertain orchards.
+      Colors: <span style="color:#2ca25f;">Green = Cover Cropped</span>, <span style="color:#505050;">Gray = Uncertain (≤15% confidence)</span>, <span style="color:#8B4513;">Brown = Bare Soil</span>. <span style="color:#ff4444;">Red</span> = missing data. Green and brown orchards are shaded by confidence — more opaque means more confident. Uncertain orchards use a single flat gray regardless of their confidence value. The Cover Cropped, Bare and % statistics exclude uncertain orchards; the Flipped count does not — it covers all orchards shown.
     </div>
   
 <fieldset>
@@ -190,7 +189,7 @@ let UNCERTAIN_THRESHOLD = 0.15; // fallback; will be overridden by manifest if p
   <div class="legend-row"><span class="legend-swatch" style="background:#8B4513;"></span> Bare</div>
   <div class="legend-row"><span class="legend-swatch" style="background:#555555;"></span> Uncertain (≤ <span id="uncertainLegendValue"> UNCERTAIN_THRESHOLD</span>)</div>
   <div class="legend-row"><span class="legend-swatch" style="background:#ff4444;"></span> Missing</div>
-  <div class="subtle" style="margin-top:6px;">Opacity reflects confidence (<code>best_soft_norm</code>): higher = more opaque. Statistics exclude uncertain orchards.</div>
+  <div class="subtle" style="margin-top:6px;">For cover-cropped and bare orchards, opacity reflects confidence (<code>best_soft_norm</code>): higher = more opaque. Uncertain orchards are drawn in a flat gray that does not vary with confidence. The Cover Cropped, Bare and % statistics exclude uncertain orchards; the Flipped count includes them.</div>
 </fieldset>
 </aside>
 
@@ -638,8 +637,7 @@ function getTimeAgnosticFilters() {
     cover3: document.getElementById('chkCover3').checked,
     cover4: document.getElementById('chkCover4').checked,
     cover5: document.getElementById('chkCover5').checked,
-    cover6: document.getElementById('chkCover6').checked,
-    cover7: document.getElementById('chkCover7').checked
+    cover6: document.getElementById('chkCover6').checked
   };
 }
 
@@ -681,8 +679,7 @@ function filterOrchardsByPattern(orchardId) {
       (filters.cover3 && hasConsecutiveYears(orchardId, 3)) ||
       (filters.cover4 && hasConsecutiveYears(orchardId, 4)) ||
       (filters.cover5 && hasConsecutiveYears(orchardId, 5)) ||
-      (filters.cover6 && hasConsecutiveYears(orchardId, 6)) ||
-      (filters.cover7 && hasConsecutiveYears(orchardId, 7))
+      (filters.cover6 && hasConsecutiveYears(orchardId, 6))
     );
     
     if (orchardId && orchardId.includes('2bd1')) {
@@ -701,8 +698,7 @@ function filterOrchardsByPattern(orchardId) {
     (filters.cover3 && hasConsecutiveYears(orchardId, 3)) ||
     (filters.cover4 && hasConsecutiveYears(orchardId, 4)) ||
     (filters.cover5 && hasConsecutiveYears(orchardId, 5)) ||
-    (filters.cover6 && hasConsecutiveYears(orchardId, 6)) ||
-    (filters.cover7 && hasConsecutiveYears(orchardId, 7))
+    (filters.cover6 && hasConsecutiveYears(orchardId, 6))
   );
 }
 
@@ -1037,7 +1033,11 @@ function createPolygonLayer(data) {
       
       // Gray zone: 0-15% confidence
       if (confidence <= UNCERTAIN_THRESHOLD) {
-        const intensity = Math.max(0.5, confidence * 3); // Scale 0-0.15 to 0.5-0.45 opacity
+        // Flat gray for uncertain orchards: this branch only runs when
+        // confidence <= 0.15, so confidence * 3 <= 0.45 never clears the 0.5
+        // floor. intensity is always 0.5 and the term is inert. The UI copy
+        // describes this as a flat gray -- change both together, or neither.
+        const intensity = Math.max(0.5, confidence * 3);
         return [80, 80, 80, Math.floor(255 * intensity)]; // Darker gray
       }
       
@@ -1308,7 +1308,7 @@ function togglePlay() {
 document.getElementById('chkTimeAgnostic').addEventListener('change', toggleTimeAgnosticMode);
 
 // Time-agnostic filter checkboxes
-['chkCoverOnce', 'chkNeverCover', 'chkCover2', 'chkCover3', 'chkCover4', 'chkCover5', 'chkCover6', 'chkCover7'].forEach(id => {
+['chkCoverOnce', 'chkNeverCover', 'chkCover2', 'chkCover3', 'chkCover4', 'chkCover5', 'chkCover6'].forEach(id => {
   document.getElementById(id).addEventListener('change', onTimeAgnosticFilterChange);
 });
 
