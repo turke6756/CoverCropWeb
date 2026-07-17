@@ -1,0 +1,10 @@
+# Netlify config for CoverCrop Explorer static site
+# Serves the contents of Web_App/Data/ and maps webApp.html to the site root.
+[build]
+  publish = "Web_App/Data"
+
+[[redirects]]
+  from   = "/"
+  to     = "/webApp.html"
+  status = 200
+  force  = true
