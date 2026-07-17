@@ -1,0 +1,8 @@
+# AgentDashboard / tooling internals — never publish
+.dashboard/
+plans/
+FixLog.md
+
+# Python
+__pycache__/
+*.pyc
