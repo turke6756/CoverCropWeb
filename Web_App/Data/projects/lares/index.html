@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 04-lares §0 page <title> -->
+<title>Lares Agent IDE — Edward Turk</title>
+<!-- COPY: 04-lares §0 page meta description -->
+<meta name="description" content="An agent-native desktop workspace for watching and directing teams of AI agents across terminals, files, browsers and documents. Electron, React, MCP.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/projects/lares/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. site.js drives .is-active only on the
+     homepage (exact path match), so it never fights this class. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     PROJECT C — /projects/lares/
+     Canonical <main class="project"> composition, design §11, in the fixed
+     order hook -> method -> highlights -> assets -> honest limits -> links,
+     then pager + contact CTA + the shared footer.
+     Per-project content structure: architecture §5C.
+
+     THE DEMO VIDEO DOES NOT EXIST. 04-lares/ASSETS.md records it as MISSING on
+     Ed's own ruling: it has not been recorded. This page therefore ships design
+     §15 STATE (b) — the honest "demo forthcoming" poster.
+     There is NO video facade, NO play affordance, NO YouTube/Vimeo iframe and no
+     data-video-id anywhere in this file, so site.js's §19.5 video handler finds
+     nothing to bind to. Do NOT wire one until a real hosted URL exists; adding a
+     play button to a video that was never made is exactly the dead control
+     design §15 forbids.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <!-- ---------------------------------------------------------------- HOOK -->
+  <header class="project__hero container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#work">Selected work</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Lares Agent IDE</span>
+    </nav>
+
+    <!-- COPY: 04-lares §1 page eyebrow -->
+    <p class="eyebrow">Active software project &middot; Short demo forthcoming</p>
+    <!-- COPY: 04-lares §1 page H1 -->
+    <h1>Lares Agent IDE</h1>
+    <!-- COPY: 04-lares §3 premise ("What if agent work were visible while it happened?") -->
+    <p class="project__premise lede">I run several AI agents at once. Lares is what makes their work visible while it happens.</p>
+    <!-- COPY: 04-lares §3 hook paragraphs (includes the honest meta-hook: this
+         site's plan was produced inside Lares via cross-provider GroupThink) -->
+    <div class="prose"><p>Lares is a desktop workspace for watching and directing teams of AI agents. Terminals, files, browsers, documents and notebooks all live in one window, and so do the agents working in them.</p>
+      <p>I built it to fix a practical problem. Running several coding agents at once meant scattering them across terminals and editor windows, and when one stalled waiting on an answer I had to hunt for it. Lares puts every agent on a single rail with its status and context budget in view, lets me attach to any one of them, and hands a supervisor agent the job of keeping the rest moving.</p>
+      <p>The plan for this website was written inside Lares. Claude and Codex argued the design out through its cross-provider GroupThink and converged on one written plan.</p></div>
+
+    <!-- Metadata row, design §16. dt labels are the structural field set fixed by
+         architecture §5; all four values are copy slots. -->
+    <dl class="metadata">
+      <div><dt>Type</dt>
+        <!-- COPY: 04-lares §1 metadata project type -->
+        <dd>Desktop software</dd></div>
+      <div><dt>Status</dt>
+        <!-- COPY: 04-lares §1 metadata status -->
+        <dd>Alpha &middot; active development</dd></div>
+      <div><dt>Domain</dt>
+        <!-- COPY: 04-lares §1 metadata domain -->
+        <dd>Agent orchestration</dd></div>
+      <div><dt>Tech</dt>
+        <!-- COPY: 04-lares §1 metadata technologies -->
+        <dd>Electron &middot; React &middot; TypeScript &middot; MCP</dd></div>
+    </dl>
+
+    <!-- HERO VISUAL — §2, the light-theme dashboard. Only eager image on the page. -->
+    <figure class="figure figure--wide">
+      <!-- COPY: 04-lares §2 hero figure ALT TEXT -->
+      <img src="/assets/images/lares/hero.webp" width="1600" height="956"
+           alt="The Lares dashboard: a vertical rail of live agent cards, each showing its name, provider, turn count and share of its context window, with one agent's chat attached in the right-hand pane."
+           fetchpriority="high" loading="eager" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 04-lares §2 hero takeaway -->
+        <span class="figure__takeaway">Every agent on one rail. Each card carries a name, the harness running it, a turn count, and how much of its context window is gone. The pane on the right is one agent's live chat, tool call by tool call.</span>
+        <!-- COPY: 04-lares §2 hero FIGURE CAPTION -->
+        <span class="figure__tech">Light theme &middot; six supervisors and four workers in one workspace</span>
+      </figcaption>
+    </figure>
+  </header>
+
+  <!-- ------------------------------------------------- DEMO — STATE (b) ----
+       Design §15 state (b): honest poster, NO dead control. The <figure> is a
+       plain image + label; there is no anchor, no play icon, no iframe.
+
+       DEVIATION, recorded on purpose (and reversible in one line): design §15's
+       state-(b) EXAMPLE uses lares/hero.webp as the poster, but hero.webp is
+       already this page's hero figure two blocks up, and shipping the same
+       picture twice reads as a bug. The poster here is dark-theme.webp instead —
+       the GroupThink shot — which architecture §5C names as the most natural
+       subject for the demo when it is recorded ("most naturally the GroupThink
+       flow"), and which §5C's asset order places second anyway. To restore the
+       spec literally: swap the src to /assets/images/lares/hero.webp (same
+       1600x956 intrinsic size, so no other change is needed).
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="demo-h">
+    <div class="prose">
+      <!-- COPY: 04-lares §4 demo block H2 -->
+      <h2 id="demo-h">Demo</h2>
+      <!-- COPY: 04-lares §4 demo block paragraph (states plainly that the demo is not recorded yet) -->
+      <p>A cross-provider GroupThink mid-flight. Two planners, one Claude and one Codex, critique the same draft plan independently, trade notes, and a synthesizer writes the converged version to a new file. A short screen recording of this is planned. I haven't made it yet, so what you are looking at is a still.</p>
+    </div>
+    <figure class="video video--pending">
+      <!-- COPY: 04-lares §4 demo poster ALT TEXT -->
+      <img src="/assets/images/lares/dark-theme.webp" width="1600" height="956"
+           alt="Lares in dark theme during a cross-provider GroupThink: a Claude synthesizer card and a Codex planner card run side by side under the same supervisor, with the supervisor's chat on the right describing the deliberation." loading="lazy" decoding="async">
+      <!-- The label is fixed verbatim by design §15 state (b) AND architecture
+           §5C ("a strong screenshot poster labeled 'Short demo forthcoming'"),
+           so it ships literally — it is the state, not prose. -->
+      <figcaption class="video__pending-label">Short demo forthcoming</figcaption>
+    </figure>
+  </section>
+
+  <!-- -------------------------------------------------------------- METHOD -->
+  <section class="project__section container" aria-labelledby="method-h">
+    <div class="prose">
+      <!-- COPY: 04-lares §5 how-it-works H2 -->
+      <h2 id="method-h">How it works</h2>
+      <!-- COPY: 04-lares §5 how-it-works paragraphs -->
+      <p>Lares is organized around tasks rather than features. A session usually runs like this:</p>
+    </div>
+
+    <!-- Method diagram, design §13 — here it carries architecture §5C's guided
+         walkthrough, which §5C fixes as TASKS, not a feature wall. The six steps
+         ship literally: they are the walkthrough itself, not prose.
+         No .method-step--out: this sequence ends in a governance step, not an
+         artifact, and marking one "output" would overstate it. -->
+    <figure class="method" aria-label="Guided walkthrough">
+      <ol class="method__flow">
+        <li class="method-step">see active agents + context usage</li>
+        <li class="method-step">attach to an agent's chat or terminal</li>
+        <li class="method-step">inspect tool calls and files read-vs-written</li>
+        <li class="method-step">dispatch cross-provider GroupThink</li>
+        <li class="method-step">review outputs in docs, notebooks, maps, browser</li>
+        <li class="method-step">govern browser access with origin allowlists + audit logs</li>
+      </ol>
+    </figure>
+
+    <!-- Secondary depth ONLY (design §16): the architecture/stack detail —
+         harness-based rather than SDK-based, MCP + lifecycle hooks, the Electron
+         shell, terminal bridge, local state, inline renderers, VS Code extension. -->
+    <details class="disclosure">
+      <!-- COPY: 04-lares §5 disclosure summary label -->
+      <summary>Architecture</summary>
+      <div class="disclosure__body">
+        <!-- COPY: 04-lares §5 disclosure body (architecture + stack detail) -->
+        <p>Lares is harness-based, not SDK-based. Agents run as real command-line programs in real terminals. A harness has to speak two things to drop in: MCP, so it can reach into the workspace, and lifecycle hooks, so it can report its own state back. No vendor SDK, and no integration to wait for. Claude Code is the reference harness I develop and test against. Codex is wired in too, which is what makes the cross-provider deliberation possible.</p>
+        <p>The shell is Electron with a React and TypeScript renderer. Terminals are node-pty and xterm bridged to WSL and tmux. Local state lives in better-sqlite3. Markdown is edited in Milkdown, and Jupyter notebooks, Word documents, PDFs, GeoTIFFs, Leaflet maps, KaTeX and CSV all render inline instead of opening somewhere else. A companion VS Code extension mirrors a live agent's terminal session into the editor, for anyone who would rather stay there.</p>
+        <p>That neutrality is the whole point. It is what lets two different providers work the same problem and converge on a shared answer.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ---------------------------------------------------------- HIGHLIGHTS -
+       Architecture §5C's dedicated callouts. All qualitative, so every card is
+       the .highlight--text variant (design §11.2) — there is no honest
+       quantitative stat for this project, and inventing one would be a claim.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="hi-h">
+    <div class="prose">
+      <!-- COPY: 04-lares §6 what-it-does H2 -->
+      <h2 id="hi-h">What it does</h2>
+    </div>
+    <ul class="highlights">
+      <li class="highlight highlight--text">
+        <!-- COPY: 04-lares §6 GroupThink callout title -->
+        <h3 class="highlight__title">Cross-provider GroupThink</h3>
+        <!-- COPY: 04-lares §6 GroupThink callout body (this session as a concrete
+             example; do NOT imply scientific validation or broad adoption) -->
+        <p>Claude and Codex work one problem and converge on a shared answer. In parallel, each solves it independently and then the two reconcile. In serial, one proposes and the other pokes holes. A supervisor relays between them and gates each turn on the other being ready, and a synthesizer writes the converged result to a file.</p>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 04-lares §6 supervisor orchestration callout title -->
+        <h3 class="highlight__title">Supervisor orchestration</h3>
+        <!-- COPY: 04-lares §6 supervisor orchestration callout body -->
+        <p>I gave Lares a supervisor at the top: it launches and monitors full agent harnesses from more than one provider, reads their chat logs, messages them directly, and dispatches waves of worker and researcher agents. Agents can still spawn their own internal subagents. What is different here is that the top level is never headless.</p>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 04-lares §6 context & usage intelligence callout title -->
+        <h3 class="highlight__title">Context and usage intelligence</h3>
+        <!-- COPY: 04-lares §6 context & usage intelligence callout body -->
+        <p>A supervisor approaching its context limit hands off automatically: it writes a continuation note and relaunches into a fresh session with its work intact. It is told when a worker's context runs hot, and it can see where the account stands against its 5-hour and 7-day usage windows. Built-in telemetry flags MCP toolsets that were granted but never used, and guidance lines in a project's config file that no agent ever reads.</p>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- No marker in the template for §6's "Visibility, not a black box" HIGHLIGHT;
+             card added so the source block ships rather than being dropped. -->
+        <h3 class="highlight__title">Visibility, not a black box</h3>
+        <p>Live agent cards, attachable chats, scrubbable tool calls, a ledger of every file each agent created and modified, and inline comments on the things it touched.</p>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 04-lares §6 non-code documents callout title -->
+        <h3 class="highlight__title">Non-code work, first class</h3>
+        <!-- COPY: 04-lares §6 non-code documents callout body -->
+        <p>Once agents write most of the code, an IDE becomes a file editor with a model attached. So Lares treats drafting and reviewing documents as seriously as running terminals: a real Markdown editor, comments anchored to a selection that agents can read, and notebooks with live outputs.</p>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 04-lares §6 governed embedded browser callout title -->
+        <h3 class="highlight__title">A governed browser</h3>
+        <!-- COPY: 04-lares §6 governed embedded browser callout body -->
+        <p>Agents browse in an embedded browser restricted to an allowlist I keep, origin by origin. Whether an agent may borrow a signed-in session is a separate decision I make per site. An action audit log records what they did.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ----------------------------------------------------- INSIDE LARES ----
+       Architecture §5C's screenshot order, minus the two already placed above
+       (hero as the page hero, dark-theme as the demo poster):
+       terminal-attach -> agent-outputs -> planning-surface -> markdown-editing
+       -> browser-allowlist. These are UI screenshots, so they stay full width
+       and are never cropped — UI text legibility is the whole point.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="as-h">
+    <div class="prose">
+      <!-- COPY: 04-lares §7 inside-Lares H2 -->
+      <h2 id="as-h">Inside Lares</h2>
+      <!-- COPY: 04-lares §7 inside-Lares intro paragraph -->
+      <p>Five views, in the order you would meet them.</p>
+    </div>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 04-lares §7 FIGURE 1 ALT TEXT -->
+      <img src="/assets/images/lares/terminal-attach.webp" width="1600" height="956"
+           alt="An agent's raw terminal opened in a pane beneath the agent cards, showing its live tmux session mid-answer, with the same agent's chat rendered in the right-hand pane." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 04-lares §7 FIGURE 1 takeaway -->
+        <span class="figure__takeaway">The chat pane is a rendering. The terminal is the actual thing. Double-click an agent card and you are inside the tmux session it runs in, reading exactly what it saw and able to type to it directly.</span>
+        <!-- COPY: 04-lares §7 FIGURE 1 FIGURE CAPTION -->
+        <span class="figure__tech">node-pty + xterm, bridged to WSL/tmux</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 04-lares §7 FIGURE 2 ALT TEXT -->
+      <img src="/assets/images/lares/agent-outputs.webp" width="1600" height="956"
+           alt="The Outputs pane listing files an agent created and modified, grouped under Created and Modified headings, each row showing the filename, a full path and how long ago it happened." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 04-lares §7 FIGURE 2 takeaway -->
+        <span class="figure__takeaway">What did it actually change? Every agent keeps a ledger of the files it created and the files it modified, with full paths and timestamps, carried across sessions. That is the difference between an agent telling you it did something and you being able to check.</span>
+        <!-- COPY: 04-lares §7 FIGURE 2 FIGURE CAPTION -->
+        <span class="figure__tech">Outputs tab &middot; created and modified files, tagged by session</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 04-lares §7 FIGURE 3 ALT TEXT -->
+      <img src="/assets/images/lares/planning-surface.webp" width="1600" height="956"
+           alt="A structured plan document rendered in the Files view beside an agent's chat, showing a grounding document of verbatim user feedback, a distilled list of issues, and links to specific source files." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 04-lares §7 FIGURE 3 takeaway -->
+        <span class="figure__takeaway">Plans render as documents, not as a chat transcript. Sections are anchored, and the surface keeps a provenance trail of which agent read and edited each one. The app witnesses that trail from the agents' own read and write calls rather than from what they say they did.</span>
+        <!-- COPY: 04-lares §7 FIGURE 3 FIGURE CAPTION -->
+        <span class="figure__tech">Files view &middot; View, Edit, Source, or open in VS Code</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 04-lares §7 FIGURE 4 ALT TEXT -->
+      <img src="/assets/images/lares/markdown-editing.webp" width="1600" height="956"
+           alt="A Markdown document open in edit mode with a formatting toolbar floating over a selection and an Add Comment box open, containing a note addressed to the agents." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 04-lares §7 FIGURE 4 takeaway -->
+        <span class="figure__takeaway">Comments are addressed to the agents. You select a passage in a document and leave a note, and the agent working on that file reads it in place. Review becomes a margin annotation instead of another instruction pasted into a prompt.</span>
+        <!-- COPY: 04-lares §7 FIGURE 4 FIGURE CAPTION -->
+        <span class="figure__tech">Milkdown editor &middot; comments anchored to a selection</span>
+      </figcaption>
+    </figure>
+
+    <!-- browser-allowlist is the one screenshot with a different intrinsic size
+         (3840x2088 source -> 1600x870 derivative). Measured, not assumed. -->
+    <figure class="figure figure--wide">
+      <!-- COPY: 04-lares §7 FIGURE 5 ALT TEXT -->
+      <img src="/assets/images/lares/browser-allowlist.webp" width="1600" height="870"
+           alt="The embedded browser with the agent allowlist panel open, listing origins the agents may visit, each with the agent and task that requested it, a visit-allowed state, and a separate switch for whether an agent may use the signed-in session." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 04-lares §7 FIGURE 5 takeaway -->
+        <span class="figure__takeaway">Browser access is a list you keep, not a permission you grant once. Each origin records which agent asked for it and why, and whether that origin may use your signed-in session, which is a separate decision and off by default. Everything the agents do there lands in an action audit log.</span>
+        <!-- COPY: 04-lares §7 FIGURE 5 FIGURE CAPTION -->
+        <span class="figure__tech">Embedded browser &middot; visit and login are separate switches, per origin</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ------------------------------------------- HONEST LIMITS / STATUS ---- -->
+  <section class="project__section container" aria-labelledby="lm-h">
+    <div class="prose">
+      <!-- COPY: 04-lares §8 honest limits H2 -->
+      <h2 id="lm-h">Honest limits &amp; status</h2>
+      <div class="limits">
+        <p class="limits__label">Honest limits</p>
+        <ul>
+          <!-- COPY: 04-lares §8 limit 1 (demo pending) -->
+          <li>A short demo video is planned but I have not recorded it. Every image on this page is a static screenshot of the running app.</li>
+          <!-- COPY: 04-lares §8 limit 2 (early / active development) -->
+          <li>Lares is alpha software in active development. It installs from source, there is no packaged build yet, and it currently runs on Windows with WSL.</li>
+          <!-- COPY: 04-lares §8 limit 3 (no claim of validation or external adoption) -->
+          <li>Claude Code and Codex are the only two harnesses I have actually tested. Provider neutrality is a design property of the MCP-and-hooks interface, not a claim that any other harness has been verified.</li>
+          <!-- No markers for §8's remaining two LIMIT blocks; added so they ship rather
+               than being dropped. -->
+          <li>The security model is "you trust the agents and the workspace," not "the app sandboxes the agents." Some boundaries exist: the browser allowlist, the audit log, best-effort path confinement. Others do not. Terminal commands are not sandboxed.</li>
+          <li>This is a personal project with no external users to speak of. It is here for what it shows about how I build, not as a product.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------ LINKS / OUTPUTS -
+       Design §11.4: an <a> ONLY where a URL is confirmed.
+       The repository IS a link: 04-lares/OPEN.md records that Ed named
+       https://github.com/turke6756/LARES-Agent-IDE and that it was then opened
+       LOGGED OUT and loads — real and public. (OPEN.md also lists two decoy
+       forms that must NOT be used: the AgentDashboard git remote and the
+       README's getlares/lares clone command.)
+       The demo-video row is a SPAN with no href, because the video does not
+       exist. Reversal, once Ed hosts one: swap the span for
+       <a class="outputs__row" href="{hosted URL}"> — and only then consider the
+       design §15 state-(a) facade.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="ln-h">
+    <div class="prose">
+      <!-- COPY: 04-lares §9 links H2 -->
+      <h2 id="ln-h">Links &amp; outputs</h2>
+      <ul class="outputs">
+        <li><a class="outputs__row" href="https://github.com/turke6756/LARES-Agent-IDE" rel="noopener"><span class="outputs__kind">Repository</span>
+          <!-- COPY: 04-lares §9 repository row text -->
+          Lares on GitHub</a></li>
+        <li><span class="outputs__row"><span class="outputs__kind">Demo</span>
+          <!-- COPY: 04-lares §9 demo row text (forthcoming — no URL yet) -->
+          Short demo forthcoming</span></li>
+        <!-- No marker for §9's Licence LINK ROW; plain span, added so it ships. -->
+        <li><span class="outputs__row"><span class="outputs__kind">Licence</span>
+          Apache-2.0</span></li>
+      </ul>
+      <!-- No marker for §9's CLOSING BODY; added so it ships. -->
+      <p>The name is Roman. The Lares were the household guardians who watched over the home. That fits a workspace whose whole argument is that your agents should never be a black box.</p>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT — fixed order B -> A -> C (design §11.5).
+       C page: prev = Cover Crop Explorer, next = All work. -->
+  <nav class="pager container" aria-label="Projects">
+    <a class="pager__link pager__prev" href="/projects/cover-crop-explorer/">
+      <span class="pager__dir">&larr; Previous</span><span class="pager__title">Cover Crop Explorer</span></a>
+    <a class="pager__link pager__next" href="/#work">
+      <span class="pager__dir">Next &rarr;</span><span class="pager__title">All work</span></a>
+  </nav>
+
+  <!-- CONTACT CTA — required on every project page (design §11.6) -->
+  <section class="contact-cta section--band"><div class="container">
+    <!-- COPY: 04-lares §10 contact CTA H2 -->
+    <h2>Interested in this work?</h2>
+    <!-- COPY: 04-lares §10 contact CTA line -->
+    <!-- SOURCE NOTE: the two markers above cite 04-lares/COPY.md §10, but §10 is the
+         PAGER (already rendered as nav.pager just above). That deck has no contact-CTA
+         section at all, unlike 02-thesis §10 and 03-covercrop §9. So these two strings
+         are design §11.6's own verbatim CTA copy, byte-identical to what
+         /projects/soil-moisture/ already ships. Reversal, if Ed wants Lares-specific CTA
+         copy written: restore the two placeholder tokens these two lines replaced. -->
+    <p class="muted">I'm an early-career environmental data scientist in the SF Bay Area.</p>
+    <div class="contact-cta__actions">
+      <a class="btn btn--primary" href="/#contact">Get in touch</a>
+      <a class="btn btn--ghost" href="/#work">See all work</a>
+    </div>
+  </div></section>
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

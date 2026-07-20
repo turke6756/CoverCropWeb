@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 03-covercrop HEAD page <title> -->
+<title>Cover Crop Explorer — Edward Turk</title>
+<!-- COPY: 03-covercrop HEAD page meta description -->
+<meta name="description" content="An experiment: 16,365 California almond orchards classified for winter cover-crop signals from Sentinel-2 imagery alone. 9 counties, 6 winters.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/projects/cover-crop-explorer/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. site.js drives .is-active only on the
+     homepage (exact path match), so it never fights this class. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     PROJECT A — /projects/cover-crop-explorer/
+     Canonical <main class="project"> composition, design §11, in the fixed
+     order hook -> method -> highlights -> assets -> honest limits -> links,
+     then pager + contact CTA + the shared footer.
+     Per-project content structure: architecture §5A.
+
+     The live map at /covercrop/ is a SEPARATELY DEPLOYED static app. It is not
+     part of this folder and 404s under a local `python -m http.server` until it
+     is deployed at that path. Architecture §5A mandates the "Launch live map"
+     CTA, so it ships — flagged, not silently dropped. Architecture §5A also
+     forbids embedding or autoplaying the live app here: link out only.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <!-- ---------------------------------------------------------------- HOOK -->
+  <header class="project__hero container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#work">Selected work</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Cover Crop Explorer</span>
+    </nav>
+
+    <!-- COPY: 03-covercrop §1 page eyebrow -->
+    <p class="eyebrow">Experiment &middot; Work in progress</p>
+    <!-- COPY: 03-covercrop §1 page H1 -->
+    <h1>Cover Crop Explorer</h1>
+    <!-- COPY: 03-covercrop §1 anchor headline / premise sentence -->
+    <p class="project__premise lede">Instead of performing a census, can you do it from space?</p>
+    <!-- COPY: 03-covercrop §3 hook paragraphs (Ed's verbatim WHY — do NOT embellish) -->
+    <!-- POUR NOTE: the source §3 BODY is three paragraphs and this marker is plural
+         ("hook paragraphs"), so each source paragraph ships in its own <p> inside the
+         existing .prose div. No text added, none reordered. Reversal: concatenate the
+         three into the single original <p>. -->
+    <div class="prose"><p>This is an experiment and a work in progress. I was learning remote sensing and wanted something real to point it at. Agriculture and sustainability have interested me for a long time, I'd been wanting to build a web app, and the whole thing started in a class at an AGU conference on hosting exactly this kind of app.</p>
+      <p>Cover cropping matters for long-term soil health and nutrient management. Whether a given orchard planted one is normally something you find out by asking the grower or by driving out to look. So the question became: instead of surveying orchards on the ground, can you estimate which ones planted a winter cover crop from satellite imagery alone?</p>
+      <p>It's not my thesis. It's an applied remote-sensing experiment that turned into an interactive map.</p></div>
+
+    <!-- Metadata row, design §16. dt labels are the structural field set fixed by
+         architecture §5 (Project type · Status · Domain · Technologies); all four
+         values are copy slots. Architecture §5A requires the status to be visible
+         near the title, which this row satisfies. -->
+    <dl class="metadata">
+      <div><dt>Type</dt>
+        <!-- COPY: 03-covercrop §1 metadata project type -->
+        <dd>Experiment</dd></div>
+      <div><dt>Status</dt>
+        <!-- COPY: 03-covercrop §1 metadata status -->
+        <dd>Work in progress</dd></div>
+      <div><dt>Domain</dt>
+        <!-- COPY: 03-covercrop §1 metadata domain -->
+        <dd>Agriculture</dd></div>
+      <div><dt>Tech</dt>
+        <!-- COPY: 03-covercrop §1 metadata technologies -->
+        <dd>GEE &middot; deck.gl &middot; PMTiles &middot; scikit-learn</dd></div>
+    </dl>
+
+    <!-- HERO VISUAL — the wide false-colour banner. DECORATIVE ONLY: its
+         provenance is unknown and it is NOT the app's classification palette
+         (03-covercrop/ASSETS.md + OPEN.md #1), so its caption must not attach a
+         legend or a data claim. Only eager image on the page. -->
+    <figure class="figure figure--wide">
+      <!-- COPY: 03-covercrop §2 hero figure ALT TEXT -->
+      <img src="/assets/images/covercrop/hero-2400.webp" width="2400" height="540"
+           alt="A wide false-colour banner of Central Valley farmland: thousands of rectangular field parcels rendered in bright green and red against black, forming a mosaic that follows the roads and river bends of the valley floor."
+           fetchpriority="high" loading="eager" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 03-covercrop §2 hero FIGURE CAPTION (decorative — no data claim) -->
+        <span class="figure__takeaway">The Central Valley, parcel by parcel. Almond orchards are small, numerous, and packed tight against each other. That's exactly why walking them is impractical, and why a satellite is worth trying.</span>
+      </figcaption>
+    </figure>
+
+    <div class="contact-cta__actions">
+      <!-- COPY: 03-covercrop §8 launch-map CTA label -->
+      <a class="btn btn--primary" href="/covercrop/" target="_blank" rel="noopener">Launch live map <span aria-hidden="true">&#8599;</span></a>
+    </div>
+  </header>
+
+  <!-- -------------------------------------------------------------- METHOD -->
+  <section class="project__section container" aria-labelledby="method-h">
+    <div class="prose">
+      <!-- COPY: 03-covercrop §4 method H2 -->
+      <h2 id="method-h">How it works</h2>
+      <!-- COPY: 03-covercrop §4 method paragraphs -->
+      <!-- POUR NOTE: source §4 BODY is three paragraphs. Paragraphs 1-2 ship here (plural
+           marker, one <p> each); paragraph 3 (the stack / static hosting one) ships in the
+           disclosure below, which its marker names explicitly. Nothing dropped. -->
+      <p>An almond orchard in winter is mostly bare trees over bare ground. Plant a cover crop and the green shows up between the tree rows, where Sentinel-2 can see it. I read each orchard's greenness and bare-soil signal across a winter and ask whether the inter-row space greened up in a way bare soil wouldn't.</p>
+      <p>The obvious failure mode is tree canopy. A mature orchard is greener than a young one no matter what's growing underneath, so a naive greenness threshold would quietly reward old orchards and punish new plantings. To get around that, I stratify orchards by tree age and judge each one against peers of its own canopy maturity rather than against the region as a whole.</p>
+    </div>
+
+    <!-- Method diagram, design §13. These five steps are the pipeline itself,
+         fixed verbatim by architecture §5A, so they ship LITERALLY — structure,
+         not prose. -->
+    <figure class="method" aria-label="Method pipeline">
+      <ol class="method__flow">
+        <li class="method-step">Sentinel-2 surface reflectance</li>
+        <li class="method-step">orchard-level greenness &amp; bare-soil signals</li>
+        <li class="method-step">comparison within tree-age groups</li>
+        <li class="method-step">cover-crop classification + confidence</li>
+        <li class="method-step method-step--out">static PMTiles web map</li>
+      </ol>
+    </figure>
+
+    <!-- Secondary depth ONLY (design §16): stack detail and implementation notes.
+         The essential method above stays visible. -->
+    <details class="disclosure">
+      <!-- COPY: 03-covercrop §4 disclosure summary label -->
+      <summary>Stack and hosting</summary>
+      <div class="disclosure__body">
+        <!-- COPY: 03-covercrop §4 disclosure body (stack, static hosting, no backend) -->
+        <p>Everything runs client-side. Google Earth Engine and Python (scikit-learn, pandas) do the analysis offline. The app itself is fully static: PMTiles vector tiles, deck.gl rendering over MapLibre GL, Plotly for the per-orchard charts. No backend, no database, no API keys, nothing to keep running.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ---------------------------------------------------------- HIGHLIGHTS -->
+  <section class="project__section container" aria-labelledby="hi-h">
+    <div class="prose">
+      <!-- COPY: 03-covercrop §5 highlights H2 -->
+      <h2 id="hi-h">What it does</h2>
+    </div>
+    <!-- Design §11.2: four quantitative evidence cards, then the two qualitative
+         .highlight--text callouts architecture §5A names explicitly
+         (tree-age stratification, confidence-aware display). -->
+    <ul class="highlights">
+      <li class="highlight">
+        <!-- COPY: 03-covercrop §5 stat 1 -->
+        <span class="highlight__stat">16,365</span>
+        <!-- COPY: 03-covercrop §5 stat 1 label -->
+        <span class="highlight__label">almond orchards classified</span>
+      </li>
+      <li class="highlight">
+        <!-- COPY: 03-covercrop §5 stat 2 -->
+        <span class="highlight__stat">9</span>
+        <!-- COPY: 03-covercrop §5 stat 2 label -->
+        <span class="highlight__label">Central Valley counties</span>
+      </li>
+      <li class="highlight">
+        <!-- COPY: 03-covercrop §5 stat 3 -->
+        <span class="highlight__stat">6</span>
+        <!-- COPY: 03-covercrop §5 stat 3 label -->
+        <span class="highlight__label">winters (2018&ndash;19 &hellip; 2023&ndash;24)</span>
+      </li>
+      <li class="highlight">
+        <!-- COPY: 03-covercrop §5 stat 4 -->
+        <span class="highlight__stat">135</span>
+        <!-- COPY: 03-covercrop §5 stat 4 label -->
+        <span class="highlight__label">orchards show the cover-crop signal in all six winters</span>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 03-covercrop §5 tree-age stratification callout title -->
+        <h3 class="highlight__title">Tree-age stratification</h3>
+        <!-- COPY: 03-covercrop §5 tree-age stratification callout body -->
+        <p>I judge each orchard against peers of its own canopy maturity, so a full-canopy block doesn't fool a naive greenness read.</p>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 03-covercrop §5 confidence-aware display callout title -->
+        <h3 class="highlight__title">Confidence, scored and shown</h3>
+        <!-- COPY: 03-covercrop §5 confidence-aware display callout body -->
+        <p>Every call carries a confidence score. I render low-certainty orchards gray and keep them out of the headline counts, so a weak guess never passes for a firm one.</p>
+      </li>
+    </ul>
+    <!-- POUR NOTE: source §5 carries a STAT CARD FOOTNOTE marked "important, do not drop"
+         and there was no COPY marker for it. It is the page's load-bearing
+         classified-not-cover-cropped guardrail, so it ships here as a sibling of the
+         .highlights list (never inside it, which would become a stray grid cell).
+         Text is verbatim; reversal is deleting this comment and the <p> below. -->
+    <p class="muted">Read that first number carefully: 16,365 is how many orchards I classified, not how many were found to be cover-cropped. In any given winter, most of them are not.</p>
+  </section>
+
+  <!-- --------------------------------------------------- ASSETS / IN THE APP
+       Architecture §5A order: wide static map -> orchard close-up + control
+       panel -> per-orchard history -> the time-slider sequence.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="as-h">
+    <div class="prose">
+      <!-- COPY: 03-covercrop §6 assets H2 -->
+      <h2 id="as-h">In the app</h2>
+      <!-- COPY: 03-covercrop §6 assets intro paragraph -->
+      <p>Four views, in the order you'd meet them: the extent, the detail, one orchard, and the same ground across six winters.</p>
+    </div>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 03-covercrop §6 FIGURE 1 ALT TEXT -->
+      <img src="/assets/images/covercrop/map-wide.webp" width="1600" height="1000"
+           alt="Screenshot of the Cover Crop Explorer map zoomed to farmland around Chowchilla and Madera. Hundreds of irregular orchard polygons are filled brown, green or flat gray over a pale basemap. A dark control panel on the left shows a season slider set to 2023 and counters reading Cover Cropped 2,696, Uncertain 3,319, Bare 10,350." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 03-covercrop §6 FIGURE 1 takeaway -->
+        <span class="figure__takeaway">Zoomed in near Chowchilla, the pattern is legible: green orchards next to bare ones, and a lot of gray where the signal wasn't strong enough to call.</span>
+        <!-- COPY: 03-covercrop §6 FIGURE 1 FIGURE CAPTION -->
+        <span class="figure__tech">The map at working zoom, winter 2023&ndash;24, over Madera and Merced counties. Green polygons carry a cover-crop estimate, brown ones read as bare soil, and flat gray marks orchards the classifier could not call with confidence. Green and brown are shaded by confidence, so a more opaque polygon is a firmer call.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 03-covercrop §6 FIGURE 2 ALT TEXT -->
+      <img src="/assets/images/covercrop/orchard-detail.webp" width="1600" height="1000"
+           alt="Close-up screenshot of the map with one green orchard polygon highlighted in a yellow outline among brown and gray neighbours. The side panel reads: Orchard Age Old, Management Type Cover Cropped, Fit (norm) 0.69, Confidence 0.69, Data Points 5, Streak 5, and shows a small line chart of classification confidence from 2018 to 2023." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 03-covercrop §6 FIGURE 2 takeaway -->
+        <span class="figure__takeaway">Select one orchard and the summary becomes a specific claim about a specific parcel, with the confidence attached.</span>
+        <!-- COPY: 03-covercrop §6 FIGURE 2 FIGURE CAPTION -->
+        <span class="figure__tech">One orchard selected, outlined in yellow. The panel reports its age class, its estimate for the selected winter, a confidence value, how many usable observations that estimate rests on, and how many consecutive winters it has carried the same call.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--prose">
+      <!-- COPY: 03-covercrop §6 FIGURE 3 ALT TEXT -->
+      <img src="/assets/images/covercrop/orchard-history.webp" width="1372" height="1456"
+           alt="A Plotly line chart titled Classification Confidence, plotting six points from 2018 to 2023. One brown point sits near 90 percent in 2018; the remaining five are green, dropping to about 15 percent in 2019, rising to 100 percent in 2020 and 2021, falling to about 45 percent in 2022, and ending near 70 percent in 2023." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 03-covercrop §6 FIGURE 3 takeaway -->
+        <span class="figure__takeaway">The per-orchard chart is the honest part: confidence moves year to year, and the app shows you when it dips instead of hiding it.</span>
+        <!-- COPY: 03-covercrop §6 FIGURE 3 FIGURE CAPTION -->
+        <span class="figure__tech">Per-orchard history for the selected parcel. Each point is one winter, coloured by the class assigned that year and positioned by how confident that call was. Two near-certain winters, one that barely cleared the floor, and a first year read as bare soil.</span>
+      </figcaption>
+    </figure>
+
+    <!-- FIGURE 4 — the time-slider sequence, shipped as STATIC SMALL MULTIPLES.
+         The screencast (time-slider.mp4/.gif) was never staged into site/assets/,
+         and architecture §5A forbids autoplay and embedding the live app here.
+         The six season frames ARE staged (800x500 each) and carry the same
+         information without motion: one frame per winter, 2018-19 .. 2023-24.
+         Built from existing primitives only (.work-grid + .figure) — there is no
+         small-multiples class in the closed site.css and I did not add one.
+         To swap in the screencast later: stage the .mp4/.webm under
+         /assets/media/ and replace this grid with a click-to-play <video> using
+         /assets/images/covercrop/time-slider-poster.webp (1600x1000) as poster. -->
+    <div class="prose">
+      <!-- COPY: 03-covercrop §6 FIGURE 4 sequence intro / shared caption -->
+      <!-- POUR NOTE: this marker names two roles ("sequence intro / shared caption") and the
+           page ships the small-multiples variant, so it takes the shared TAKEAWAY plus the
+           SMALL-MULTIPLES CAPTION, which is the only place the left-to-right winter order is
+           stated. Reversal: delete the second <p>. -->
+      <p>Scrubbing the slider is why this is a map and not a table: the same ground, six winters running, changing colour as orchards come in and out of cover.</p>
+      <p>The same view, six winters. Left to right: 2018&ndash;19, 2019&ndash;20, 2020&ndash;21, 2021&ndash;22, 2022&ndash;23, 2023&ndash;24.</p>
+    </div>
+    <div class="work-grid">
+      <figure class="figure">
+        <!-- COPY: 03-covercrop §6 FIGURE 4 season-00 alt -->
+        <img src="/assets/images/covercrop/season-frames/season-00.webp" width="800" height="500"
+             alt="The map near Chowchilla in winter 2018&ndash;19, mostly brown and gray parcels with scattered green." loading="lazy" decoding="async">
+        <figcaption class="figure__cap">
+          <!-- COPY: 03-covercrop §6 FIGURE 4 season-00 caption -->
+          <span class="figure__takeaway">Winter 2018&ndash;19</span>
+        </figcaption>
+      </figure>
+      <figure class="figure">
+        <!-- COPY: 03-covercrop §6 FIGURE 4 season-01 alt -->
+        <img src="/assets/images/covercrop/season-frames/season-01.webp" width="800" height="500"
+             alt="The same view in winter 2019&ndash;20." loading="lazy" decoding="async">
+        <figcaption class="figure__cap">
+          <!-- COPY: 03-covercrop §6 FIGURE 4 season-01 caption -->
+          <span class="figure__takeaway">Winter 2019&ndash;20</span>
+        </figcaption>
+      </figure>
+      <figure class="figure">
+        <!-- COPY: 03-covercrop §6 FIGURE 4 season-02 alt -->
+        <img src="/assets/images/covercrop/season-frames/season-02.webp" width="800" height="500"
+             alt="The same view in winter 2020&ndash;21, with noticeably more green in the centre of the frame." loading="lazy" decoding="async">
+        <figcaption class="figure__cap">
+          <!-- COPY: 03-covercrop §6 FIGURE 4 season-02 caption -->
+          <span class="figure__takeaway">Winter 2020&ndash;21</span>
+        </figcaption>
+      </figure>
+      <figure class="figure">
+        <!-- COPY: 03-covercrop §6 FIGURE 4 season-03 alt -->
+        <img src="/assets/images/covercrop/season-frames/season-03.webp" width="800" height="500"
+             alt="The same view in winter 2021&ndash;22." loading="lazy" decoding="async">
+        <figcaption class="figure__cap">
+          <!-- COPY: 03-covercrop §6 FIGURE 4 season-03 caption -->
+          <span class="figure__takeaway">Winter 2021&ndash;22</span>
+        </figcaption>
+      </figure>
+      <figure class="figure">
+        <!-- COPY: 03-covercrop §6 FIGURE 4 season-04 alt -->
+        <img src="/assets/images/covercrop/season-frames/season-04.webp" width="800" height="500"
+             alt="The same view in winter 2022&ndash;23, the greenest of the six frames." loading="lazy" decoding="async">
+        <figcaption class="figure__cap">
+          <!-- COPY: 03-covercrop §6 FIGURE 4 season-04 caption -->
+          <span class="figure__takeaway">Winter 2022&ndash;23</span>
+        </figcaption>
+      </figure>
+      <figure class="figure">
+        <!-- COPY: 03-covercrop §6 FIGURE 4 season-05 alt -->
+        <img src="/assets/images/covercrop/season-frames/season-05.webp" width="800" height="500"
+             alt="The same view in winter 2023&ndash;24." loading="lazy" decoding="async">
+        <figcaption class="figure__cap">
+          <!-- COPY: 03-covercrop §6 FIGURE 4 season-05 caption -->
+          <span class="figure__takeaway">Winter 2023&ndash;24</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- The time control itself — a small inline UI detail (1404x452 crop of the
+         slider strip), constrained to the reading column. ASSETS.md is explicit
+         that despite its filename this is NOT the video poster. -->
+    <figure class="figure figure--prose">
+      <!-- COPY: 03-covercrop §6 time-control alt text -->
+      <img src="/assets/images/covercrop/time-slider.webp" width="1404" height="452"
+           alt="The app's time control. A dark panel labelled Time holds a slider reading Season: 2023, filled to the right-hand end of its track, with a play button beside it." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 03-covercrop §6 time-control caption -->
+        <span class="figure__takeaway">The time control. Six positions, one per winter, plus a play button that steps through them.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ------------------------------------------- HONEST LIMITS / STATUS ---- -->
+  <section class="project__section container" aria-labelledby="lm-h">
+    <div class="prose">
+      <!-- COPY: 03-covercrop §7 honest limits H2 -->
+      <h2 id="lm-h">Honest limits &amp; status</h2>
+      <div class="limits">
+        <p class="limits__label">Honest limits</p>
+        <ul>
+          <!-- COPY: 03-covercrop §7 limit 1 (experiment / work in progress) -->
+          <li>This is an experiment and a work in progress, not a finished product.</li>
+          <!-- COPY: 03-covercrop §7 limit 2 (classification is an inference) -->
+          <li>Every estimate is an inference from satellite-observed inter-row greening, not a ground-truthed survey. Nothing here was checked in a field. Low-confidence calls are kept separate from firm ones and left out of the headline counts, but "confident" here means the signal was clean, not that anyone verified it.</li>
+          <!-- COPY: 03-covercrop §7 limit 3 (low-confidence results kept separate) -->
+          <!-- POUR NOTE: source §7 has five BODY BLOCKs for four slots. Blocks 1 and 2 map to
+               limits 1 and 2; block 2 already carries the "low-confidence kept separate" point
+               this marker names, so limit 3 takes BODY BLOCK 3 (the adoption-rate refusal)
+               rather than leaving it unpoured. Nothing dropped, nothing reordered. -->
+          <li>I'm not claiming adoption rates, acreage totals, or policy conclusions. The map estimates a signal. It doesn't measure a practice. And to say it once more, because it's the number people misread: 16,365 is how many orchards I classified, not how many planted cover crops.</li>
+        </ul>
+      </div>
+      <!-- COPY: 03-covercrop §7 status paragraph -->
+      <!-- POUR NOTE: BODY BLOCK 4 (the in-app defect, marked "do not soften, do not drop") and
+           BODY BLOCK 5 (what would make it stronger) both belong in this single status slot, so
+           each ships as its own <p>. Reversal: merge into the one original <p>. -->
+      <p>The app's own interface has known problems. Its multi-winter streak filter offers a "7+ season" option that matches zero orchards, because the dataset only holds six winters and nothing can ever satisfy it. Some of the app's UI text overstates what the analysis supports. I'd rather say that here than have someone find it themselves. The interface is a claim, and the claim isn't always calibrated to the data behind it.</p>
+      <p>The obvious next step is ground truth. Without a set of orchards whose management is actually known, there's no way to put an accuracy number on any of this, and an accuracy number is what would turn the experiment into evidence.</p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------ LINKS / OUTPUTS -
+       Design §11.4: an <a> ONLY where a URL is confirmed; otherwise a plain
+       <span class="outputs__row"> with no dead href.
+         - "Launch live map" IS a link: /covercrop/ is the spec-mandated target
+           (architecture §5A). It 404s locally until that app is deployed there.
+         - The repository row IS a link. 03-covercrop/OPEN.md #7 had held it as a
+           SPAN because the repo URL was taken from MaterialsBrief and never opened
+           live, and repos in this set have been renamed before. On 2026-07-20 the
+           URL was verified live via the GitHub API: turke6756/CoverCropWeb exists
+           and is public, so the documented one-line reversal was performed and the
+           row now ships as <a class="outputs__row"
+           href="https://github.com/turke6756/CoverCropWeb" rel="noopener">.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="ln-h">
+    <div class="prose">
+      <!-- COPY: 03-covercrop §8 links H2 -->
+      <h2 id="ln-h">Links</h2>
+      <!-- POUR NOTE: source §8 CTA SURROUND COPY ("sits directly above the launch button at the
+           foot of the page") had no COPY marker. It ships here, directly above the Live map
+           row, which is the only launch affordance at the foot. Reversal: delete this <p>. -->
+      <p>The map is the deliverable, and it's better used than described. Pick a winter, zoom into an orchard block, and click a polygon to see what the classifier thought and how sure it was.</p>
+      <ul class="outputs">
+        <li><a class="outputs__row" href="/covercrop/" target="_blank" rel="noopener"><span class="outputs__kind">Live map</span>
+          <!-- COPY: 03-covercrop §8 live map row text -->
+          The live experiment. Fully static, so there's nothing to spin up and nothing to sign in to. <span aria-hidden="true">&#8599;</span></a></li>
+        <li><a class="outputs__row" href="https://github.com/turke6756/CoverCropWeb" rel="noopener"><span class="outputs__kind">Repository</span>
+          <!-- COPY: 03-covercrop §8 repository row text -->
+          Analysis and app source.</a></li>
+      </ul>
+      <!-- COPY: 03-covercrop §8 closing line ("Explore the experiment in the live map.") -->
+      <p>Explore the experiment in the live map.</p>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT — fixed order B -> A -> C (design §11.5).
+       A page: prev = Soil-moisture mapping, next = Lares Agent IDE. -->
+  <nav class="pager container" aria-label="Projects">
+    <a class="pager__link pager__prev" href="/projects/soil-moisture/">
+      <span class="pager__dir">&larr; Previous</span><span class="pager__title">Soil-moisture mapping</span></a>
+    <a class="pager__link pager__next" href="/projects/lares/">
+      <span class="pager__dir">Next &rarr;</span><span class="pager__title">Lares Agent IDE</span></a>
+  </nav>
+
+  <!-- CONTACT CTA — required on every project page (design §11.6) -->
+  <section class="contact-cta section--band"><div class="container">
+    <!-- COPY: 03-covercrop §9 contact CTA H2 -->
+    <h2>Get in touch</h2>
+    <!-- COPY: 03-covercrop §9 contact CTA line -->
+    <p class="muted">I'm an early-career environmental data scientist in the SF Bay Area, working on remote sensing for water resources and agriculture. If any of this is close to what your team does, I'd like to hear about it.</p>
+    <div class="contact-cta__actions">
+      <a class="btn btn--primary" href="/#contact">Get in touch</a>
+      <a class="btn btn--ghost" href="/#work">See all work</a>
+    </div>
+  </div></section>
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

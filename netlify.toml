@@ -1,10 +1,11 @@
-# Netlify config for CoverCrop Explorer static site
-# Serves the contents of Web_App/Data/ and maps webApp.html to the site root.
+# Netlify config for Ed Turk's portfolio site.
+# Serves the contents of Web_App/Data/: the portfolio at the root, and the
+# CoverCrop Explorer map app at /covercrop/.
 [build]
   publish = "Web_App/Data"
 
+# The map app used to live at the site root. Keep old shared links working.
 [[redirects]]
-  from   = "/"
-  to     = "/webApp.html"
-  status = 200
-  force  = true
+  from   = "/webApp.html"
+  to     = "/covercrop/"
+  status = 301

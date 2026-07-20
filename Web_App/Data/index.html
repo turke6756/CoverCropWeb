@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 01-home-shared PART 0 homepage <title> -->
+<title>Edward Turk — Environmental Data Scientist</title>
+<!-- COPY: 01-home-shared PART 0 homepage meta description -->
+<meta name="description" content="Portfolio of Edward Turk, an environmental data scientist in the San Francisco Bay Area working in satellite remote sensing, GIS, and water resources.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- ===== end shared header. No .is-active here: on the homepage site.js drives it. ===== -->
+
+<main id="main">
+
+  <!-- ======================================================================
+       1. #hero — architecture §4.1, design §9
+       Hero image is the ONLY eager image on the site; everything else lazy-loads.
+       IMAGE STAND-IN: the intended /assets/images/home/hero.webp is still
+       NEEDS-PRODUCTION (01-home-shared/ASSETS.md) and images/home/ is empty. I
+       link the already-produced derivative of the SAME slide-5 concept artwork,
+       thesis/vegetation-sensor.webp, so no <img> 404s. Reversal is one line:
+       swap src to /assets/images/home/hero.webp width="1600" height="1100"
+       once that file exists.
+       ====================================================================== -->
+  <section class="hero section" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <!-- COPY: 01-home-shared §2.1 hero eyebrow -->
+        <p class="eyebrow">Environmental Data Scientist &middot; GIS &middot; Remote Sensing &middot; Water Resources &middot; SF Bay Area</p>
+        <!-- COPY: 01-home-shared §2.1 hero H1 -->
+        <h1 class="hero__title">I map what's happening below the surface using what satellites see above it.</h1>
+        <!-- COPY: 01-home-shared §2.1 hero dek -->
+        <p class="hero__lede">I'm Edward Turk, an environmental data scientist in the San Francisco Bay Area. I've done the field and lab work, and I work with satellite imagery, spatial models, and interactive tools, mostly on systems that are hard to measure directly.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#work">View selected work</a>
+          <a class="btn btn--ghost" href="#about">About</a>
+        </div>
+      </div>
+      <figure class="hero__figure">
+        <!-- COPY: 01-home-shared §2.1 hero figure ALT (ships as a pair with the final src) -->
+        <img src="/assets/images/thesis/vegetation-sensor.webp" width="1400" height="764"
+             alt="Concept diagram: plant roots connect subsurface soil moisture to the canopy, so satellite-observed greenness carries information about the moisture below."
+             fetchpriority="high" loading="eager" decoding="async">
+        <!-- COPY: 01-home-shared §2.1 hero figure caption -->
+        <figcaption>Concept diagram from my master's research on soil-moisture mapping.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       2. #thread — architecture §4.2, design §10
+       The four-step strip lives INSIDE #thread as a compact band, not as a
+       competing section (architecture §4: "no separate How I work block").
+       The four step keys are structural labels fixed by architecture §4.2, so
+       they ship literally; only the one-line descriptions are copy slots.
+       ====================================================================== -->
+  <section class="section section--band" id="thread">
+    <div class="container container--prose">
+      <!-- COPY: 01-home-shared §2.2 thread eyebrow -->
+      <p class="eyebrow">The through-line</p>
+      <!-- COPY: 01-home-shared §2.2 thread H2 -->
+      <h2>Making the unseen legible</h2>
+      <!-- COPY: 01-home-shared §2.2 thread through-line paragraph -->
+      <p>Plenty of what matters can't be watched directly: moisture under a hillside, a farming practice spread across a whole valley, the inner workings of a team of AI agents. My work is mostly the same move in different domains. Find a signal you can see, use it to infer the thing you can't, and be honest about the uncertainty in between.</p>
+    </div>
+    <div class="container">
+      <ol class="loop">
+        <li class="loop__step">
+          <span class="loop__k">Observe</span>
+          <!-- COPY: 01-home-shared §2.2 loop step 1 description -->
+          <span class="loop__d">canopy greenness, field moisture, topography, agent tool calls</span>
+        </li>
+        <li class="loop__step">
+          <span class="loop__k">Model</span>
+          <!-- COPY: 01-home-shared §2.2 loop step 2 description -->
+          <span class="loop__d">spatial analysis, statistics, or software turn the signal into a testable form</span>
+        </li>
+        <li class="loop__step">
+          <span class="loop__k">Validate</span>
+          <!-- COPY: 01-home-shared §2.2 loop step 3 description -->
+          <span class="loop__d">where it transfers, where it fails, how the uncertainty is shown</span>
+        </li>
+        <li class="loop__step">
+          <span class="loop__k">Make visible</span>
+          <!-- COPY: 01-home-shared §2.2 loop step 4 description -->
+          <span class="loop__d">maps, figures, and interfaces someone else can inspect</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       3. #work — Selected Work. Card order B -> A -> C (architecture §4.3).
+       Card component per design §12: .card__media is a NONINTERACTIVE <div>
+       (no href, not aria-hidden); navigation is the title link + the footer
+       CTA; no anchor is ever nested in another; thumbnails are decorative
+       (alt="") because the title link already names the destination.
+       All three card thumbnails are STAND-INS — see BUILD_LOG [7].
+       ====================================================================== -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section__head">
+        <!-- COPY: 01-home-shared §2.3 work eyebrow -->
+        <p class="eyebrow">Selected work</p>
+        <!-- COPY: 01-home-shared §2.3 work H2 -->
+        <h2>Three projects, one method</h2>
+      </div>
+
+      <div class="work-grid">
+
+        <!-- ---- CARD B (first) — thesis / soil moisture ---- -->
+        <!-- STAND-IN: intended /assets/images/thesis/card.webp is a 16:10 crop of
+             vwc-mean-cv.webp and does not exist yet; I link the uncropped source,
+             which .card__media crops to 16:10 with object-fit:cover. -->
+        <article class="card">
+          <div class="card__media"><img src="/assets/images/thesis/vwc-mean-cv.webp" width="1400" height="1044" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__body">
+            <!-- COPY: 01-home-shared §2.3 card B label -->
+            <p class="card__label">Master's research &middot; Remote sensing &middot; Water resources</p>
+            <!-- COPY: 01-home-shared §2.3 card B title -->
+            <h3 class="card__title"><a href="/projects/soil-moisture/">Mapping soil moisture from vegetation phenology</a></h3>
+            <!-- COPY: 01-home-shared §2.3 card B summary -->
+            <p class="card__summary">Testing whether Sentinel-2 vegetation time series can predict watershed-scale soil moisture in the Upper Gunnison / East River watershed near Crested Butte, Colorado.</p>
+            <!-- COPY: 01-home-shared §2.3 card B evidence line -->
+            <p class="card__evidence">10 m maps &middot; 437 ground measurements, 17 sites &middot; leave-one-site-out validation</p>
+            <div class="card__foot">
+              <!-- COPY: 01-home-shared §2.3 card B badge -->
+              <span class="badge">AGU 2025 &middot; manuscript in preparation</span>
+              <div class="card__actions">
+                <!-- COPY: 01-home-shared §2.3 card B CTA label -->
+                <a class="link-arrow" href="/projects/soil-moisture/">Explore the research</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ---- CARD A (second) — Cover Crop Explorer. Two-action variant (design §12). ----
+             The "Launch live map" target /covercrop/ is the separately-deployed map app.
+             It is NOT part of this folder and will 404 under a local python -m http.server
+             until that app is deployed at that path. Kept because design §12 and
+             architecture §4.3 both mandate this exact two-CTA pair. -->
+        <article class="card">
+          <div class="card__media"><img src="/assets/images/covercrop/map-wide.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__body">
+            <!-- COPY: 01-home-shared §2.3 card A label -->
+            <p class="card__label">Experiment &middot; Work in progress &middot; Agriculture</p>
+            <!-- COPY: 01-home-shared §2.3 card A title -->
+            <h3 class="card__title"><a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a></h3>
+            <!-- COPY: 01-home-shared §2.3 card A summary -->
+            <p class="card__summary">An interactive, serverless map that estimates winter cover-crop signals across California almond orchards using free satellite imagery. Counting that on the ground means a census, so this asks how much you can infer from space instead.</p>
+            <!-- COPY: 01-home-shared §2.3 card A evidence line -->
+            <p class="card__evidence">16,365 orchards &middot; 9 counties &middot; 6 winters (2018&ndash;19 &hellip; 2023&ndash;24)</p>
+            <div class="card__foot">
+              <!-- COPY: 01-home-shared §2.3 card A badge -->
+              <span class="badge badge--experiment">Experiment &middot; Work in progress</span>
+              <div class="card__actions">
+                <!-- COPY: 01-home-shared §2.3 card A primary CTA label -->
+                <a class="link-arrow" href="/projects/cover-crop-explorer/">View case study</a>
+                <!-- COPY: 01-home-shared §2.3 card A secondary CTA label -->
+                <a class="btn btn--ghost btn--sm" href="/covercrop/" target="_blank" rel="noopener">Launch live map <span aria-hidden="true">&#8599;</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ---- CARD C (third) — Lares. Badge only, NO play button: the demo video
+             is not hosted yet, and design §12 forbids a play affordance until a
+             real hosted URL exists. ---- -->
+        <article class="card">
+          <div class="card__media"><img src="/assets/images/lares/card.webp" width="800" height="500" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__body">
+            <!-- COPY: 01-home-shared §2.3 card C label -->
+            <p class="card__label">Software project &middot; Electron &middot; React &middot; TypeScript</p>
+            <!-- COPY: 01-home-shared §2.3 card C title -->
+            <h3 class="card__title"><a href="/projects/lares/">Lares Agent IDE</a></h3>
+            <!-- COPY: 01-home-shared §2.3 card C summary -->
+            <p class="card__summary">A visibility-first desktop workspace for watching, directing, and collaborating with teams of AI agents across terminals, files, browsers, documents, and notebooks.</p>
+            <!-- COPY: 01-home-shared §2.3 card C evidence line -->
+            <p class="card__evidence">Harness-based, not SDK-based &middot; cross-provider GroupThink &middot; governed browser</p>
+            <div class="card__foot">
+              <!-- COPY: 01-home-shared §2.3 card C badge -->
+              <span class="badge">Short demo forthcoming</span>
+              <div class="card__actions">
+                <!-- COPY: 01-home-shared §2.3 card C CTA label -->
+                <a class="link-arrow" href="/projects/lares/">See how Lares works</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       4. #coursework — GIS coursework gallery.
+       A homepage SECTION, not a route: no deep page, no nav entry, no project
+       card, placed after #work and before #about (06-gis-gallery/COPY.md
+       header). Four entries in the manifest's Entry 1..4 order.
+       It is deliberately absent from site.js's observed-section list
+       ('hero','thread','work','about','contact') — it has no nav link to light.
+       No .gallery class exists in the closed site.css, so this is built from
+       existing primitives only: .work-grid + .figure (design §14).
+       ====================================================================== -->
+  <section class="section" id="coursework">
+    <div class="container">
+      <div class="section__head">
+        <!-- COPY: 06-gis-gallery Section header EYEBROW -->
+        <p class="eyebrow">Coursework</p>
+        <!-- COPY: 06-gis-gallery Section header H2 -->
+        <h2>Class exercises</h2>
+        <!-- COPY: 06-gis-gallery Section header DEK -->
+        <p class="lede">A few pieces from GIS coursework at the University of San Francisco. Graded class exercises and one self-directed final project, not research. They're here because they cover ground the three projects above don't: routing a power line across a cost surface, building a bare-earth terrain model from airborne LiDAR, and scoring a floodplain against five environmental drivers at once. And three more: hand-digitizing from imagery, building a study area out of county data, and reading a raw LiDAR point cloud.</p>
+      </div>
+
+      <!-- GRID REBUILD (copy pour + link pass, 2026-07-20). Three changes, all mandated:
+           (a) the grid grew from four cards to SEVEN. 06-gis-gallery/COPY.md's
+               "UPDATE 2026-07-20 (second pass)" note reorders the section to
+               1 least-cost, 2 Walker Creek, 3 methane, 4 Alameda, 5 Austin,
+               6 campus digitizing, 7 LiDAR. The four cards that were already here are
+               entries 4-7 in that order; entries 1-3 are new.
+           (b) every card title is now a link to its own page. Slugs are taken VERBATIM
+               from the Routes table in 06-gis-gallery/ENTRY_PAGES.md, which is the
+               authoritative list.
+           (c) the four pre-existing cards keep their <img src>, width, height and their
+               original `<!-- COPY: ... - - >` comment lines BYTE-FOR-BYTE, including the
+               stale "Entry 1..4" numbering in those comments. Those numbers are the OLD
+               ordering; each image is unchanged and now sits under its NEW number.
+               Comment text was not allowed to be edited, so this note records the offset:
+               comment "Entry 1" = card 4, "Entry 2" = card 5, "Entry 3" = card 6,
+               "Entry 4" = card 7.
+           Cards 1-3 carry NO <img>: COPY.md states "none staged ... No filename is
+           asserted here" and writes neither alt text nor caption for them, so no image,
+           alt or caption is invented. They ship with their H3, meta line and body, which
+           is why they read as the fuller cards. Title/meta/body use existing site.css
+           primitives only (.figure__takeaway, .figure__tech). No new class was added.
+           UPDATE 2026-07-20 (image pass): the three images for cards 1-3 now exist, so
+           each of those cards gained an <img>. src/width/height are the staged files; the
+           alt text on each was COPIED VERBATIM from that card's own gallery detail page
+           (/gallery/least-cost-route/, /gallery/walker-creek/, /gallery/methane-fuzzy-logic/)
+           and was not rewritten here. Captions are unchanged. The paragraph above about
+           cards 1-3 carrying no <img> describes the earlier state and is kept for history. -->
+      <div class="work-grid">
+
+        <!-- ---- Card 1 — least-cost transmission corridor (COPY.md Entry 1) ---- -->
+        <figure class="figure">
+          <!-- ALT TEXT: copied verbatim from /gallery/least-cost-route/. Not rewritten here. -->
+          <img src="/assets/images/gallery/gallery-least-cost-route-cost-surface.webp" width="1165" height="1186"
+               alt="Topographic map of hilly terrain shaded in greens, tans and olive. A magenta line runs from a small yellow square marker at the bottom left, north along the western side of the frame past a blue reservoir, then bends east across the top to an orange circular marker. A heavy black line continues southeast from that orange marker toward the lower right. A dashed black line runs close to the magenta line near the bottom left. Thin grey roads and pale rectangular patches are scattered across the frame. No legend or scale bar is in view." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <span class="figure__takeaway"><a href="/gallery/least-cost-route/">Routing a transmission line by least cost</a></span>
+            <span class="figure__tech">Class assignment &middot; ArcGIS Online Map Viewer &middot; Published November 2025</span>
+            <span class="figure__takeaway">Two fixed points, a valley in between, and terrain left to argue for the route. I turned slope into a cost surface, binning 0 to about 30 degrees into ten steps priced 1 through 10, and let the least-cost path fall out of that. The route came out just under 19 km. The reclass table is published alongside the map, all ten rows of it, so anyone can check the bin edges instead of taking my word for the cost surface. The underlying data is instructional and modified, so this is a class exercise and not a siting study for anyone.</span>
+          </figcaption>
+        </figure>
+
+        <!-- ---- Card 2 — Walker Creek floodplain habitat (COPY.md Entry 2) ---- -->
+        <figure class="figure">
+          <!-- ALT TEXT: copied verbatim from /gallery/walker-creek/. Not rewritten here. -->
+          <img src="/assets/images/gallery/gallery-walker-creek-floodplain-logjams.webp" width="1099" height="1057"
+               alt="Satellite image of a creek winding through open grassland and scattered trees, with a road crossing the channel at the top left. Coloured bands are drawn over the valley floor: a dark navy core along the channel, then medium blue and pale blue spreading outward, with a thin orange fringe between them. Three short dark brown bars sit across the channel and are picked out by white arrows leading to the bold white label &#8220;channel-spanning engineered log jams&#8221;. A red arrow labelled &#8220;River Flow Direction&#8221; points up-valley, a north arrow sits at the top right, and a scale bar reading 0 to 0.2 miles runs along the bottom." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <span class="figure__takeaway"><a href="/gallery/walker-creek/">Mapping re-connectable floodplain habitat in Walker Creek</a></span>
+            <span class="figure__tech">Class assignment &middot; Introduction to LiDAR &middot; FUSION, LAStools and ArcGIS Pro</span>
+            <span class="figure__takeaway">Lower Walker Creek runs into Tomales Bay and carries coho salmon, and restoration there means giving the creek its floodplain back. I built a 1 m bare-earth DEM from 2018 USGS 3DEP LiDAR and measured how much ground reconnects at each meter the water comes up. Widening the stream by anything meaningful for salmon takes at least two meters of rise. Doing it by excavation instead would mean roughly 44,230 cubic yards of material, which is about 550 backyard pools. The catch is that a two-meter design head can become a four-meter rise in a storm and put the nearby road under water.</span>
+          </figcaption>
+        </figure>
+
+        <!-- ---- Card 3 — methane potential, fuzzy logic (COPY.md Entry 3) ---- -->
+        <figure class="figure">
+          <!-- ALT TEXT: copied verbatim from /gallery/methane-fuzzy-logic/. Not rewritten here. -->
+          <img src="/assets/images/gallery/gallery-methane-suitability-surface.webp" width="1600" height="1126"
+               alt="A continuous raster surface draped over a river valley, coloured on a ramp from red through orange and yellow to green. Green and yellow concentrate on the valley floor on both sides of a blue river line that meanders across the frame, while solid red covers the higher ground around it. Nicholson Lake is labelled in pale blue at the top, with Nicholson Lake Ridge Rd and County Road 734 running past it and a spot elevation reading 8979 ft beside it. Pale grey patches carry no raster values. No legend, scale bar or north arrow is in view." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <span class="figure__takeaway"><a href="/gallery/methane-fuzzy-logic/">Modeling methane potential in an alpine floodplain</a></span>
+            <span class="figure__tech">Class assignment &middot; Fuzzy overlay in ArcGIS &middot; Published December 2025</span>
+            <span class="figure__takeaway">Methane leaves wetland soils unevenly, and a lot of what drives that is too small for a satellite to find. For a floodplain in the Slate River watershed I scored five environmental drivers as fuzzy surfaces and multiplied them together, so any single missing requirement takes a pixel to zero rather than getting averaged away. The drivers came from what is known to control methanogenesis rather than from fitting anything to observations. It maps where the conditions line up, and a limiting factor pass shows which of the five is holding each place back. Nothing in it has been checked against measured flux.</span>
+          </figcaption>
+        </figure>
+
+        <!-- ---- Card 4 — Alameda County traffic exposure (COPY.md Entry 4).
+             The COPY comment below still reads "Entry 1": stale numbering, preserved
+             byte-for-byte on instruction. Image, width and height are untouched. ---- -->
+        <figure class="figure">
+          <!-- COPY: 06-gis-gallery Entry 1 ALT TEXT -->
+          <img src="/assets/images/gallery/gallery-alameda-traffic-birthrate.webp" width="1600" height="1236"
+               alt="Map of Alameda County, California. Census tracts are shaded from pale yellow to dark blue for the proportion of the tract affected by traffic, and each tract carries a circular infant symbol scaled to its birth rate. The darkest, most heavily symbolized tracts run along the Oakland&ndash;San Leandro&ndash;Hayward corridor." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <span class="figure__takeaway"><a href="/gallery/alameda-traffic/">Traffic exposure and birth rates in Alameda County</a></span>
+            <span class="figure__tech">Self-directed final project &middot; Introduction to GIS &middot; ArcGIS Pro</span>
+            <!-- COPY: 06-gis-gallery Entry 1 FIGURE CAPTION -->
+            <span class="figure__takeaway">Alameda County, 2020. The tracts with the highest share of residents near heavy traffic are also, in places, the tracts with the highest birth rates. That overlap sits along the bayside urban corridor rather than in the inland east county.</span>
+          </figcaption>
+        </figure>
+
+        <!-- ---- Card 5 — Austin tri-county study area (COPY.md Entry 5).
+             COPY comment below reads "Entry 2": stale numbering, preserved. ---- -->
+        <figure class="figure">
+          <!-- COPY: 06-gis-gallery Entry 2 ALT TEXT -->
+          <img src="/assets/images/gallery/gallery-austin-urban-growth.webp" width="1600" height="1260"
+               alt="Grey-and-white map of a three-county study area around Austin, Texas, labeled Hays, Travis and Williamson. Magenta circles of varying size mark cities, scaled to population change between 2010 and 2020; the largest circle sits over Austin in Travis County. Parks are green, water is blue, urban roads form a dense grey web through the centre." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <span class="figure__takeaway"><a href="/gallery/austin-study-area/">Building a study area out of three counties</a></span>
+            <span class="figure__tech">Class assignment &middot; Introduction to GIS &middot; ArcGIS Pro</span>
+            <!-- COPY: 06-gis-gallery Entry 2 FIGURE CAPTION -->
+            <span class="figure__takeaway">Population change 2010&ndash;2020 across the Austin metro study area. Austin itself dominates the symbol scale, but the cluster of mid-sized circles strung north through Travis and Williamson counties is the suburban growth the study area was built to show.</span>
+          </figcaption>
+        </figure>
+
+        <!-- ---- Card 6 — campus green-space digitizing (COPY.md Entry 6).
+             COPY comment below reads "Entry 3": stale numbering, preserved. ---- -->
+        <figure class="figure">
+          <!-- COPY: 06-gis-gallery Entry 3 ALT TEXT -->
+          <img src="/assets/images/gallery/gallery-cmu-greenspace-digitizing.webp" width="1650" height="1275"
+               alt="Aerial imagery of the Carnegie Mellon University main quad with hand-digitized layers drawn over it: pale green polygons for lawns and green spaces, each labeled with its calculated area, thin white outlines for walkways, and bright green dots for individual trees. A legend, north arrow and metric scale bar sit at the lower left." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <span class="figure__takeaway"><a href="/gallery/campus-digitizing/">Digitizing green space for a stormwater project</a></span>
+            <span class="figure__tech">Class assignment &middot; Introduction to GIS &middot; ArcGIS Pro</span>
+            <!-- COPY: 06-gis-gallery Entry 3 FIGURE CAPTION -->
+            <span class="figure__takeaway">Green space, walkways and trees digitized from imagery for a campus stormwater runoff project, with each green-space polygon labeled by calculated area. Drawn December 2024.</span>
+          </figcaption>
+        </figure>
+
+        <!-- ---- Card 7 — LiDAR point cloud (COPY.md Entry 7).
+             COPY comment below reads "Entry 4": stale numbering, preserved.
+             Ships the UNCROPPED file (1902x1108). The -cropped derivative (1902x876) was
+             swapped out 2026-07-20: the crop removed the status bar, and the byte-frozen
+             alt text describes it ("the status bar reads 221,440 points"), so the cropped
+             image made the accessible text false. The uncropped file shows a Windows title
+             bar and menu bar, which is cosmetic; a false statement in alt text is not. It
+             also matches what /gallery/lidar-point-cloud/ already uses. Verified to contain
+             no username or file path, so no privacy issue. OUTSTANDING PRODUCTION TASK: a
+             new crop that removes the title/menu bar but KEEPS both the intensity legend
+             and the status bar. Alt text is protected and was not touched. ---- -->
+        <figure class="figure">
+          <!-- COPY: 06-gis-gallery Entry 4 ALT TEXT -->
+          <img src="/assets/images/gallery/gallery-lidar-fusion-intensity.webp" width="1902" height="1108"
+               alt="Screenshot of the FUSION LIDAR Data Viewer showing a side-on view of an airborne LiDAR point cloud against a black background. A dense block of forest canopy on the left gives way to open, textured ground on the right with a handful of isolated conifer crowns rising from it. Points are colored by return intensity on a blue-to-red ramp, keyed to a legend on the left; the status bar reads 221,440 points." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <span class="figure__takeaway"><a href="/gallery/lidar-point-cloud/">Reading a forest in a LiDAR point cloud</a></span>
+            <span class="figure__tech">Class exercise &middot; Introduction to LiDAR &middot; FUSION / LDV</span>
+            <!-- COPY: 06-gis-gallery Entry 4 FIGURE CAPTION -->
+            <span class="figure__takeaway">221,440 LiDAR returns colored by intensity in FUSION's data viewer. Canopy and open ground separate out on return intensity alone, before any point classification is applied.</span>
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <!-- COPY: 06-gis-gallery Section footer -->
+      <p class="muted">These are coursework, so the questions were mostly set by the assignment rather than by me. The exception is the Alameda County project, which was mine.</p>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       5. #about — LEAN, not the full resume (architecture §4.4). The five-job
+       timeline is deferred to a future /about/ page; do not grow this section
+       into one. Layout per design §11.7 (.about grid, photo in the side column).
+       PORTRAIT DIMENSIONS: 1200x804. Design §11.7's example hard-codes
+       900x1100 (portrait 9:11); the real photograph is LANDSCAPE and the
+       shipped derivative portrait-1200.webp measures 1200x804 (read off the
+       file, not the spec). The 9:11 crop is NOT applied — it would cut either
+       Ed or the projection screen out of frame, which is an open item with Ed,
+       not a markup decision. Shipping the true dimensions is what prevents
+       layout shift. A 900x602 sibling (portrait-900.webp) is also staged.
+       ====================================================================== -->
+  <section class="section section--band" id="about">
+    <div class="container">
+      <div class="section__head">
+        <!-- COPY: 01-home-shared §2.4 about eyebrow -->
+        <p class="eyebrow">About</p>
+        <!-- COPY: 01-home-shared §2.4 about H2 -->
+        <h2>Field and lab science, then remote sensing</h2>
+      </div>
+
+      <!-- ABOUT HERO (added 2026-07-20). Ed chose the award-ceremony photograph as the
+           section's lead image. It is an ADDITION, not a replacement: the presenting
+           photograph below in figure.about__photo stays, with its byte-frozen alt text
+           carried over unchanged. No caption ships because no source copy provides one. -->
+      <figure class="about__hero">
+        <img src="/assets/images/about/petulla-ceremony.webp" width="1200" height="798"
+             alt="Edward Turk stands smiling behind a table, holding a framed certificate that reads The Joseph Petulla Award, Edward Turk. Large gold letter balloons and clusters of green and yellow balloons fill the background, with flags to one side and stacks of folded green graduation stoles on the table beside him." loading="lazy" decoding="async">
+        <!-- PENDING: caption for the ceremony photograph — no source copy exists for it. -->
+      </figure>
+
+      <div class="about">
+        <div class="about__body stack">
+          <!-- COPY: 01-home-shared §2.4 about lead paragraph (field/lab differentiator) -->
+          <p>I spent roughly five years in laboratory and field science before remote sensing became most of my work. That background means I've collected the field and lab data that GIS layers are made of&mdash;methane flux chambers, groundwater wells, porewater chemistry, soil cores&mdash;not just downloaded it. Soil health and regenerative agriculture remain passions of mine.</p>
+          <!-- COPY: 01-home-shared §2.4 about transition paragraph (current positioning) -->
+          <p>I'm now a graduate research assistant at the University of San Francisco, working on floodplain hydrology. I use Sentinel-2 imagery, harmonic regression, and interactive tools to map environmental conditions that are hard to measure on the ground.</p>
+          <!-- COPY: 01-home-shared §2.4 about credibility anchor (work history, stated honestly) -->
+          <p>Earlier, I was a Research Associate II at Pivot Bio (2020&ndash;2023), on the team whose product was named to TIME's Best Inventions of 2023.</p>
+          <!-- COPY: 01-home-shared §2.4 about compact credential line -->
+          <p class="about__creds">M.S. candidate, Environmental Management, University of San Francisco (2024&ndash;2026; degree confers on thesis completion) &middot; Advanced Certificate in Geospatial Information Science &middot; Joseph Petulla Award, Outstanding MSEM Graduate Student (2026) &middot; B.S. Ecology &amp; Evolution, UC Santa Cruz.</p>
+
+          <ul class="about__skills">
+            <li><span class="about__skill-k">Spatial &amp; remote sensing</span>
+              <!-- COPY: 01-home-shared §2.4 skills group 1 -->
+              ArcGIS Pro, QGIS, Earth Engine, Sentinel-2, LiDAR</li>
+            <li><span class="about__skill-k">Analysis</span>
+              <!-- COPY: 01-home-shared §2.4 skills group 2 -->
+              Python, R, SQL, mixed-effects models, harmonic regression, LOSO/LOVO validation, kriging</li>
+            <li><span class="about__skill-k">Environmental measurement</span>
+              <!-- COPY: 01-home-shared §2.4 skills group 3 -->
+              soil sampling, groundwater, LI-COR trace-gas</li>
+            <li><span class="about__skill-k">Software &amp; communication</span>
+              <!-- COPY: 01-home-shared §2.4 skills group 4 -->
+              JavaScript, interactive mapping, technical figures, explainers</li>
+          </ul>
+
+          <div class="contact-cta__actions">
+            <a class="btn btn--primary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <!-- PDF TRIGGER (added 2026-07-20). presenting-thesis.webp (1788x1197) is the SAME
+             photograph as portrait-1200.webp at higher resolution, so it replaces the
+             derivative rather than shipping the picture twice; the byte-frozen alt text is
+             carried over unchanged because it still describes exactly this image. See the
+             PORTRAIT DIMENSIONS note above: 1200x804 was the old derivative's size.
+             The anchor is a REAL link to the PDF. With JS off it simply opens
+             /assets/docs/thesis-presentation.pdf; site.js upgrades it to a modal viewer. -->
+        <figure class="about__photo">
+          <a class="pdf-trigger" href="/assets/docs/thesis-presentation.pdf"
+             data-pdf-title="Thesis presentation">
+            <!-- The frame is a presentational clip box: it lets the image scale on
+                 hover/focus without bleeding over its neighbours. It carries no text
+                 and no semantics, so the link's accessible name is unchanged. -->
+            <span class="pdf-trigger__frame">
+              <!-- COPY: 01-home-shared §2.4 portrait alt text -->
+              <img src="/assets/images/about/presenting-thesis.webp" width="1788" height="1197"
+                   alt="Edward Turk presenting his master's thesis." loading="lazy" decoding="async">
+            </span>
+            <span class="pdf-trigger__label">Thesis presentation (PDF)</span>
+          </a>
+        </figure>
+      </div>
+
+      <!-- FRAMED CREDENTIALS + INSTITUTIONAL MARK (added 2026-07-20).
+           Each certificate sits in .credential__frame: a mat (surface fill + padding),
+           a hairline around the scan itself, an outer frame rule and a shadow. All from
+           existing tokens; no new brand color. Captions are the credential's own printed
+           name and nothing more — no source copy exists for anything longer. -->
+      <div class="credentials">
+
+        <figure class="credential">
+          <span class="credential__frame">
+            <img src="/assets/images/about/gis-certificate.webp" width="995" height="802"
+                 alt="Certificate in blackletter type headed University of San Francisco, Society of Jesus, with the university seal. It certifies that Edward Turk has completed the requirements for the advanced certificate Geospatial Information Science in the College of Arts and Sciences, given at San Francisco on the twenty-first day of May, Two Thousand and Twenty-Six, and carries signatures from the Provost and Academic Vice President and the Dean of the College." loading="lazy" decoding="async">
+          </span>
+          <figcaption class="credential__cap">Advanced Certificate in Geospatial Information Science</figcaption>
+        </figure>
+
+        <figure class="credential">
+          <span class="credential__frame">
+            <img src="/assets/images/about/petulla-award-certificate.webp" width="1103" height="845"
+                 alt="Certificate headed University of San Francisco, Master's of Science in Environmental Management, titled The Joseph Petulla Award in blackletter type over a faint laurel watermark. The text reads that the award is presented to one graduating MSEM student with outstanding academic achievement and a Master's Project that demonstrates a significant contribution to the environmental field. Presented to Edward Turk, May 14th, 2026, signed by Amalia Kokkinaki, Ph.D., Program Director, MSEM Program." loading="lazy" decoding="async">
+          </span>
+          <figcaption class="credential__cap">The Joseph Petulla Award</figcaption>
+        </figure>
+
+      </div>
+
+      <!-- The USF mark is dark-green and gold artwork on real transparency, so it ships on
+           a neutral light plate rather than on the band background, which would swallow the
+           green wordmark in the dark theme. Kept small: it is a mark, not an image. -->
+      <div class="about__mark">
+        <img src="/assets/images/about/usf-logo.webp" width="428" height="382"
+             alt="University of San Francisco" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

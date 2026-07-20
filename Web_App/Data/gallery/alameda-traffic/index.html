@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 <title> (literal em-dash separator, per that file's conventions note) -->
+<title>Traffic exposure and birth rates in Alameda County — Edward Turk</title>
+<!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 META DESCRIPTION -->
+<meta name="description" content="A self-directed final project from an intro GIS course. Caltrans traffic counts and Census tract data, mapped together across Alameda County.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/gallery/alameda-traffic/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. The nav has no Coursework item, so Work
+     is the nearest correct target for a deep gallery page. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     GALLERY ENTRY 4 — /gallery/alameda-traffic/
+     Coursework, deliberately subordinate to the three flagship project
+     pages. Structure and class names copied from
+     /projects/soil-moisture/index.html; every class used here already
+     exists in /assets/css/site.css. No class was added or invented.
+     Copy is verbatim from content/06-gis-gallery/ENTRY_PAGES.md Entry 4,
+     with alt text and figure caption verbatim from COPY.md Entry 4.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <header class="project__hero container">
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#coursework">Coursework</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Traffic exposure and birth rates in Alameda County</span>
+    </nav>
+
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 META LINE -->
+    <p class="eyebrow">Self-directed final project &middot; Introduction to GIS &middot; ArcGIS Pro</p>
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 H1 -->
+    <h1>Traffic exposure and birth rates in Alameda County</h1>
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 STANDFIRST -->
+    <p class="project__premise lede">The one assignment where I picked the question myself, so I picked the one I actually wanted answered.</p>
+  </header>
+
+  <section class="project__section container" aria-labelledby="what-h">
+    <div class="prose">
+      <h2 id="what-h">What it was</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 "What it was" BODY -->
+      <p>The final project in the intro GIS course was open. Rather than a set exercise, I could pick a county and a question, and the question I picked was where in Alameda County the people most likely to be affected by traffic pollution actually live. Traffic exposure is easy to map on its own. So is birth rate. The thing worth knowing is whether they land in the same places.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="how-h">
+    <div class="prose">
+      <h2 id="how-h">How it worked</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 "How it worked" BODY.
+           The threshold distance that defines a high-traffic zone lives in the
+           .aprx, not in any readable document (OPEN.md §4), so no distance is
+           named here. Do not add one. -->
+      <p>Two datasets. Caltrans annual average daily traffic counts for the state highway network, and American Community Survey five-year tract data from the Census Bureau. In ArcGIS Pro I built the high-traffic zones off the Caltrans counts, intersected them with the census tracts, and calculated what share of each tract falls inside a zone. That share became the choropleth. The birth rate per tract became a proportional symbol drawn on top of it. Sources are cited in the map margin.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="learned-h">
+    <div class="prose">
+      <h2 id="learned-h">What I learned</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 4 "What I learned" BODY.
+           Deliberately short: this is the only reflection recorded in the
+           source files. See ENTRY_PAGES.md "FOR ED" item 2. -->
+      <p>Most of the decision here was in the display, not the analysis. Two variables in one frame instead of two maps side by side is a choice you make before you know whether it will work, and it only pays off if the reader can still separate the two once they are stacked.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="fig-h">
+    <div class="prose">
+      <h2 id="fig-h">Figure</h2>
+    </div>
+    <!-- ASSETS.md stages gallery-alameda-traffic-birthrate.jpg; the shipped
+         WebP derivative is confirmed on disk at 1600x1236. Not blocked. -->
+    <figure class="figure figure--wide">
+      <!-- ALT TEXT: COPY.md Entry 4 ALT TEXT, verbatim and byte-frozen. Do not re-voice. -->
+      <img src="/assets/images/gallery/gallery-alameda-traffic-birthrate.webp" width="1600" height="1236"
+           alt="Map of Alameda County, California. Census tracts are shaded from pale yellow to dark blue for the proportion of the tract affected by traffic, and each tract carries a circular infant symbol scaled to its birth rate. The darkest, most heavily symbolized tracts run along the Oakland&ndash;San Leandro&ndash;Hayward corridor." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- FIGURE CAPTION: COPY.md Entry 4 FIGURE CAPTION, verbatim. -->
+        <span class="figure__takeaway">Alameda County, 2020. The tracts with the highest share of residents near heavy traffic are also, in places, the tracts with the highest birth rates. That overlap sits along the bayside urban corridor rather than in the inland east county.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- LINKS ROW — EMPTY, and renders nothing. ENTRY_PAGES.md Entry 4: no ArcGIS
+       Online item is known to exist for this project. Never guess or reconstruct
+       this URL. If one is ever supplied, the label is "View the live web map". -->
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

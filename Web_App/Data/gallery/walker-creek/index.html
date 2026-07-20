@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 06-gis-gallery/ENTRY_PAGES.md Entry 2 <title> (literal em-dash separator) -->
+<title>Mapping re-connectable floodplain habitat in Walker Creek — Edward Turk</title>
+<!-- COPY: 06-gis-gallery/ENTRY_PAGES.md Entry 2 META DESCRIPTION -->
+<meta name="description" content="A LiDAR class project. Building a 1 m bare-earth DEM of the lower Walker Creek floodplain and measuring what reconnects at each meter of water level.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/gallery/walker-creek/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. site.js drives .is-active only on the
+     homepage (exact path match), so it never fights this class. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     GALLERY ENTRY 2 — /gallery/walker-creek/
+     Route is authoritative from ENTRY_PAGES.md's Routes table. Coursework,
+     deliberately subordinate to the three project pages.
+
+     IMAGES: one, `gallery-walker-creek-floodplain-logjams.webp`, supplied by Ed
+     and staged on disk. It is a DIFFERENT figure from the ASSETS.md inventory,
+     not a re-export of any entry in it, so every ASSETS.md row stands unchanged:
+     the floodplain-heights result map and the QA/QC report are still BLOCKED
+     PENDING ED RE-EXPORT, and the rest are still not staged on disk under
+     /assets/images/gallery/ — including
+     `gallery-walker-creek-coho-malt.jpg`. Because the coho photograph is NOT
+     placed on this page, its mandatory MALT credit line is correctly absent
+     too. If that photo is ever added here, the credit string from ASSETS.md
+     MUST be rendered as visible page text next to it. That is a build rule.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <header class="project__hero container">
+    <!-- COPY: ENTRY_PAGES.md Entry 2 BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#coursework">Coursework</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Mapping re-connectable floodplain habitat in Walker Creek</span>
+    </nav>
+
+    <!-- COPY: ENTRY_PAGES.md Entry 2 META LINE -->
+    <p class="eyebrow">Class assignment &middot; Introduction to LiDAR &middot; FUSION, LAStools and ArcGIS Pro</p>
+    <!-- COPY: ENTRY_PAGES.md Entry 2 H1 -->
+    <h1>Mapping re-connectable floodplain habitat in Walker Creek</h1>
+    <!-- COPY: ENTRY_PAGES.md Entry 2 STANDFIRST -->
+    <p class="project__premise lede">How much salmon habitat comes back for every meter you raise the water, and what it would cost to get there.</p>
+  </header>
+
+  <!-- ---------------------------------------------------------- WHAT IT WAS -->
+  <section class="project__section container" aria-labelledby="was-h">
+    <div class="prose">
+      <h2 id="was-h">What it was</h2>
+      <!-- COPY: ENTRY_PAGES.md Entry 2 "What it was" BODY. Written in Ed's own
+           register from the StoryMap's facts only — the StoryMap introduction
+           carries an AI usage disclosure, so none of its phrasing is mirrored. -->
+      <p>Lower Walker Creek runs into Tomales Bay and carries Central California Coast coho salmon, a run that has fallen off badly over the last century. Restoration there is aimed at reconnecting the creek to its floodplain, because off-channel water at high flow is where juvenile fish get refuge and slow water. The question here was a measuring one rather than a design one. If the water in that channel came up by a meter, then two, then three, how much floodplain actually reconnects, and how much material would you have to move to get the same effect by digging instead.</p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------- HOW IT WORKED -->
+  <section class="project__section container" aria-labelledby="how-h">
+    <div class="prose">
+      <h2 id="how-h">How it worked</h2>
+      <!-- COPY: ENTRY_PAGES.md Entry 2 "How it worked" BODY -->
+      <p>The elevation data is 2018 USGS 3DEP LiDAR at QL2, pulled from OpenTopography. I spot-checked the point cloud in FUSION before committing to the download and got a first-return density of about 7.2 points per square meter, which is enough to resolve the low ground I was after. Ground classification is where it stopped cooperating. FUSION&#8217;s ground filter kept exiting on me, probably something in the LAS headers, so I rewrote the headers with las2las and classified ground in LAStools with lasground_new instead. From the ground returns I built a 1 m bare-earth DEM in FUSION with gridsurfacecreate, exported it to ASCII, and took it into ArcGIS Pro. There I added a hillshade and used the raster calculator to cut masks at 1 m, 2.5 m, 3 m and 3.5 m above the current water surface, then converted each mask to polygons so I could get an area for every band.</p>
+    </div>
+
+    <!-- FIGURE. `gallery-walker-creek-floodplain-logjams.webp`, supplied by Ed
+         and on disk at 1099x1057. Resolved by CONTENT, not by label: it is not
+         the banded floodplain-heights results map (it carries no legend, and its
+         subject is the log jams), so the blocked re-export below is NOT filled by
+         it and all three placeholder lines stay. Alt text and caption are written
+         from the image; no source copy for either exists for THIS figure. -->
+    <figure class="figure figure--wide">
+      <!-- ALT TEXT: written from the supplied image. Visible content only. -->
+      <img src="/assets/images/gallery/gallery-walker-creek-floodplain-logjams.webp" width="1099" height="1057"
+           alt="Satellite image of a creek winding through open grassland and scattered trees, with a road crossing the channel at the top left. Coloured bands are drawn over the valley floor: a dark navy core along the channel, then medium blue and pale blue spreading outward, with a thin orange fringe between them. Three short dark brown bars sit across the channel and are picked out by white arrows leading to the bold white label &#8220;channel-spanning engineered log jams&#8221;. A red arrow labelled &#8220;River Flow Direction&#8221; points up-valley, a north arrow sits at the top right, and a scale bar reading 0 to 0.2 miles runs along the bottom." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- PENDING: figure caption. No source caption exists for this specific
+             image (ASSETS.md does not inventory it), so this line is deliberately
+             minimal and purely descriptive. Replace verbatim if Ed's own turns up. -->
+        <span class="figure__takeaway">Three channel-spanning engineered log jams marked on the creek, over the coloured bands mapped across the valley floor.</span>
+      </figcaption>
+    </figure>
+
+    <!-- FIGURE — the lead image for this entry is the StoryMap's banded results
+         map, `gallery-walker-creek-floodplain-heights.jpg`. ASSETS.md marks it
+         BLOCKED PENDING ED RE-EXPORT (punch list P1, P2, P7: "Walter Creek" in
+         the title and "Floodplane" across six legend entries), and no file of
+         that name exists under /assets/images/gallery/. No <img>. -->
+    <!-- FIGURE PENDING: gallery-walker-creek-floodplain-heights.jpg — BLOCKED PENDING ED RE-EXPORT (P1/P2/P7) and not staged on disk. Ed's own caption for it lives in the StoryMap's Results block and should be reused verbatim when the re-export lands. -->
+    <!-- FIGURE PENDING: the four FUSION/LAStools workflow screenshots and the FUSION Catalog QA/QC report are listed in ASSETS.md but are not staged under /assets/images/gallery/; the QA/QC report is additionally BLOCKED PENDING ED RE-EXPORT (P8). -->
+    <!-- FIGURE PENDING: gallery-walker-creek-coho-malt.jpg — third-party coho photograph, not staged on disk. If it is ever placed here it must ship with its mandatory MALT credit line rendered as visible page text. -->
+  </section>
+
+  <!-- ------------------------------------------------------ WHAT I LEARNED -->
+  <section class="project__section container" aria-labelledby="learn-h">
+    <div class="prose">
+      <h2 id="learn-h">What I learned</h2>
+      <!-- COPY: ENTRY_PAGES.md Entry 2 "What I learned" BODY -->
+      <p>Two things, and the first one is that a tool failing is not a result. FUSION&#8217;s ground filter quitting cost me the afternoon, and the fix was to stop trying to make it work and classify in LAStools instead, which is a decision you can only make once you stop treating the software as the method. The second is about scale. Getting the water up two meters is aggressive, and the alternative of excavating for it comes to roughly 44,230 cubic yards, which is around 550 backyard pools of material. Putting the number in pools is what made it obvious it wasn&#8217;t happening. A volume in cubic yards is a number. A volume in swimming pools is an answer.</p>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- RESULTS ---- -->
+  <section class="project__section container" aria-labelledby="res-h">
+    <div class="prose">
+      <h2 id="res-h">Results, in the source&#8217;s own terms</h2>
+      <!-- COPY: ENTRY_PAGES.md Entry 2 "Results, in the source's own terms" BODY.
+           The road-flooding caveat and the "compromise" conclusion are what keep
+           this page from reading as a restoration proposal. Do not cut for length.
+           Table 1 is deliberately NOT reproduced (ENTRY_PAGES.md, FOR ED item 16). -->
+      <p>Band heights are measured against bank-full water surface under normal, non-storm conditions. To widen the stream by anything meaningful for salmon, the water has to come up at least two meters, which is the gold band on the map. Storms may do it on their own, and log jams are the cheap durable way to do it on purpose. The catch is that a two-meter design head can become a four-meter rise in a storm and put the nearby road under water. So the honest reading is a compromise. Smaller cut channels, or log jams plus something done about the road.</p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------- NOBODY ACTED ON THIS -
+       Required block (ENTRY_PAGES.md implementation note). Do not remove.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="none-h">
+    <div class="prose">
+      <h2 id="none-h">Nobody acted on this</h2>
+      <div class="limits">
+        <p class="limits__label">Honest limits</p>
+        <ul>
+          <!-- COPY: ENTRY_PAGES.md Entry 2 "Nobody acted on this" BODY -->
+          <li>This was coursework. The Marin Resource Conservation District and the Marin Agricultural Land Trust are cited in it because their work is the reason the site is interesting, not because either of them commissioned or saw any of this.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------------- LINKS -
+       ENTRY_PAGES.md Entry 2: LINKS ROW — ONE LINK, FILLED. URL used exactly
+       as recorded. Never guess, reconstruct or shorten an ArcGIS URL.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="ln-h">
+    <div class="prose">
+      <h2 id="ln-h">Links</h2>
+      <ul class="outputs">
+        <li><a class="outputs__row" href="https://storymaps.arcgis.com/stories/1abc149ee9884bd1b0dbcad681acaa6e" rel="noopener"><span class="outputs__kind">StoryMap</span>
+          <!-- COPY: ENTRY_PAGES.md Entry 2 link label -->
+          View the StoryMap</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT — within the coursework gallery, in the ENTRY_PAGES.md
+       Routes-table order. Titles are the entries' own H1s. -->
+  <nav class="pager container" aria-label="Coursework">
+    <a class="pager__link" href="/gallery/least-cost-route/">
+      <span class="pager__dir">&larr; Previous</span><span class="pager__title">Routing a transmission line by least cost</span></a>
+    <a class="pager__link pager__next" href="/gallery/methane-fuzzy-logic/">
+      <span class="pager__dir">Next &rarr;</span><span class="pager__title">Modeling methane potential in an alpine floodplain</span></a>
+  </nav>
+
+  <!-- CONTACT CTA — structural block carried over from the project pages.
+       ENTRY_PAGES.md writes no CTA copy for gallery entries. -->
+  <!-- PENDING: contact CTA heading and line — no copy exists in ENTRY_PAGES.md for gallery entries. -->
+  <section class="contact-cta section--band"><div class="container">
+    <div class="contact-cta__actions">
+      <a class="btn btn--primary" href="/#contact">Get in touch</a>
+      <a class="btn btn--ghost" href="/#work">See all work</a>
+    </div>
+  </div></section>
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

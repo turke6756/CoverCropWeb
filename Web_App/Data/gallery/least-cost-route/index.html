@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 06-gis-gallery/ENTRY_PAGES.md Entry 1 <title> (literal em-dash separator) -->
+<title>Routing a transmission line by least cost — Edward Turk</title>
+<!-- COPY: 06-gis-gallery/ENTRY_PAGES.md Entry 1 META DESCRIPTION -->
+<meta name="description" content="A class exercise on modified instructional data. Building a slope cost surface and running a least-cost route from Otay Valley to Jamul.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/gallery/least-cost-route/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. site.js drives .is-active only on the
+     homepage (exact path match), so it never fights this class. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     GALLERY ENTRY 1 — /gallery/least-cost-route/
+     Route is authoritative from ENTRY_PAGES.md's Routes table. This page is
+     COURSEWORK and is deliberately subordinate to the three project pages:
+     no highlights grid, no stat cards, no metadata dl. Prose, one figure slot
+     and one outbound link.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <header class="project__hero container">
+    <!-- COPY: ENTRY_PAGES.md Entry 1 BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#coursework">Coursework</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Routing a transmission line by least cost</span>
+    </nav>
+
+    <!-- COPY: ENTRY_PAGES.md Entry 1 META LINE -->
+    <p class="eyebrow">Class assignment &middot; ArcGIS Online Map Viewer &middot; Published November 2025</p>
+    <!-- COPY: ENTRY_PAGES.md Entry 1 H1 -->
+    <h1>Routing a transmission line by least cost</h1>
+    <!-- COPY: ENTRY_PAGES.md Entry 1 STANDFIRST -->
+    <p class="project__premise lede">Two fixed endpoints, a valley in between, and a surface that says what every cell in it costs to cross.</p>
+  </header>
+
+  <!-- ---------------------------------------------------------- WHAT IT WAS -->
+  <section class="project__section container" aria-labelledby="was-h">
+    <div class="prose">
+      <h2 id="was-h">What it was</h2>
+      <!-- COPY: ENTRY_PAGES.md Entry 1 "What it was" BODY. The two honesty
+           sentences about instructional data are load-bearing (Ed's ruling
+           2026-07-20). Do not soften, shorten or move this paragraph. -->
+      <p>Get a transmission line from the Otay Valley Power Plant to the Jamul Substation, and pick the route by making the terrain argue for itself rather than by drawing a line that looks reasonable. The exercise runs on instructional data. The service that hosts it says so directly: this data is for instructional use only, modified and not identical to the source it came from. So the route is a real piece of analysis and it is not a real siting study for a real utility. Nothing here was proposed to anyone.</p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------- HOW IT WORKED -->
+  <section class="project__section container" aria-labelledby="how-h">
+    <div class="prose">
+      <h2 id="how-h">How it worked</h2>
+      <!-- COPY: ENTRY_PAGES.md Entry 1 "How it worked" BODY. Every number here
+           is verbatim from the published service. Do not narrate why the bin
+           edges or cost values were chosen. -->
+      <p>Slope became cost. I reclassified the slope raster into ten equal-width bins running from 0 to about 30 degrees, and mapped each bin to an output cost of 1 through 10, so the flattest ground scores 1 and the steepest scores 10. That reclass table is published alongside the map, all ten rows of it, which means anyone can check the bin edges instead of taking my word for the surface. From there the cost surface drives the route. The proposed path came out as a polyline of 18,972.50 m, just under 19 km, with a 16.94 m connector at the start. The map carries the study area, the lakes, the existing power line and roads, and the two endpoints, all in California State Plane Zone 6.</p>
+    </div>
+
+    <!-- FIGURE. Ed supplied the capture and it is on disk at 1165x1186. It shows
+         the route and both endpoints, so it fills the Entry 1 figure slot; it
+         does NOT carry a legend or a scale bar, which the ASSETS.md capture
+         request also asked for. That residual gap is recorded below rather than
+         papered over. Alt text and caption are written from the image itself:
+         no source copy for either exists in ENTRY_PAGES.md or COPY.md. -->
+    <figure class="figure figure--wide">
+      <!-- ALT TEXT: written from the supplied image. Visible content only. -->
+      <img src="/assets/images/gallery/gallery-least-cost-route-cost-surface.webp" width="1165" height="1186"
+           alt="Topographic map of hilly terrain shaded in greens, tans and olive. A magenta line runs from a small yellow square marker at the bottom left, north along the western side of the frame past a blue reservoir, then bends east across the top to an orange circular marker. A heavy black line continues southeast from that orange marker toward the lower right. A dashed black line runs close to the magenta line near the bottom left. Thin grey roads and pale rectangular patches are scattered across the frame. No legend or scale bar is in view." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- PENDING: figure caption. No source caption for this image exists in
+             ENTRY_PAGES.md or COPY.md, so this line is deliberately minimal and
+             purely descriptive. Replace verbatim if Ed's own caption turns up. -->
+        <span class="figure__takeaway">The proposed route, in magenta, running between the two fixed endpoint markers.</span>
+      </figcaption>
+    </figure>
+    <!-- FIGURE PENDING: a capture of the same web map with the legend and scale bar in frame. The staged image has neither, so the cost values behind the route are not readable off the page (ASSETS.md, Part 3 capture request). -->
+  </section>
+
+  <!-- ------------------------------------------------------ WHAT I LEARNED -->
+  <section class="project__section container" aria-labelledby="learn-h">
+    <div class="prose">
+      <h2 id="learn-h">What I learned</h2>
+      <!-- COPY: ENTRY_PAGES.md Entry 1 "What I learned" BODY -->
+      <p>Publishing the reclass table with the map turned out to matter more than the route did. A least-cost path is only as good as the cost surface under it, and a cost surface is a set of decisions someone made about what counts as expensive. Leaving those ten rows visible is the difference between a route a reader can argue with and a line on a map.</p>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------------- LINKS -
+       ENTRY_PAGES.md Entry 1: LINKS ROW — ONE LINK, FILLED. URL used exactly
+       as recorded. Never guess, reconstruct or shorten an ArcGIS URL.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="ln-h">
+    <div class="prose">
+      <h2 id="ln-h">Links</h2>
+      <ul class="outputs">
+        <li><a class="outputs__row" href="https://usfca.maps.arcgis.com/home/item.html?id=75540dd6ed5b4cc5ba271593b369d9d0" rel="noopener"><span class="outputs__kind">Web map</span>
+          <!-- COPY: ENTRY_PAGES.md Entry 1 link label -->
+          View the live web map</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT — within the coursework gallery, in the ENTRY_PAGES.md
+       Routes-table order. Titles are the entries' own H1s. -->
+  <nav class="pager container" aria-label="Coursework">
+    <a class="pager__link" href="/#coursework">
+      <span class="pager__dir">&larr; Previous</span><span class="pager__title">All coursework</span></a>
+    <a class="pager__link pager__next" href="/gallery/walker-creek/">
+      <span class="pager__dir">Next &rarr;</span><span class="pager__title">Mapping re-connectable floodplain habitat in Walker Creek</span></a>
+  </nav>
+
+  <!-- CONTACT CTA — structural block carried over from the project pages.
+       ENTRY_PAGES.md writes no CTA copy for gallery entries. -->
+  <!-- PENDING: contact CTA heading and line — no copy exists in ENTRY_PAGES.md for gallery entries. -->
+  <section class="contact-cta section--band"><div class="container">
+    <div class="contact-cta__actions">
+      <a class="btn btn--primary" href="/#contact">Get in touch</a>
+      <a class="btn btn--ghost" href="/#work">See all work</a>
+    </div>
+  </div></section>
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

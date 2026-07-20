@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 02-thesis §0 page <title> -->
+<title>Mapping soil moisture from vegetation phenology — Edward Turk</title>
+<!-- COPY: 02-thesis §0 page meta description -->
+<meta name="description" content="Master's research predicting soil moisture from Sentinel-2 vegetation time series: continuous 10 m maps of a snowmelt-driven Colorado watershed.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/projects/soil-moisture/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. site.js drives .is-active only on the
+     homepage (exact path match), so it never fights this class. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     PROJECT B — /projects/soil-moisture/
+     Canonical <main class="project"> composition, design §11, in the fixed
+     order hook -> method -> highlights -> assets -> honest limits -> links,
+     then pager + contact CTA + the shared footer.
+     Per-project content structure: architecture §5B.
+     Wide assets are DIRECT CHILDREN of .project__section (the escape rule);
+     only text sits inside .prose.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <!-- ---------------------------------------------------------------- HOOK -->
+  <header class="project__hero container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#work">Selected work</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Soil-moisture mapping</span>
+    </nav>
+
+    <!-- COPY: 02-thesis §1 hero eyebrow -->
+    <p class="eyebrow">Master's research &middot; Thesis in progress</p>
+    <!-- COPY: 02-thesis §1 page H1 -->
+    <h1>Mapping soil moisture from vegetation phenology</h1>
+    <!-- COPY: 02-thesis §1 one-sentence premise / question -->
+    <p class="project__premise lede">Can satellite-observed vegetation predict soil moisture across an entire watershed?</p>
+    <!-- COPY: 02-thesis §1 hook paragraphs (deliverable first, methane as motivation) -->
+    <div class="prose"><p>My master's research predicts soil moisture from space. The output is a continuous 10 m map of the
+upper East River valley near Crested Butte, Colorado, one surface per year from 2018 to 2025. I
+built it for terrain that is difficult, and in places impossible, to instrument directly.</p>
+    <p>The question came from the field, and it started with methane. On the Slate River floodplain we ran
+collaborative flux campaigns in 2024 and 2025 with groups from Stanford and Cal State East Bay,
+taking roughly sixty chamber measurements across five sites laid out along a distance-from-river
+transect. The pattern was clear: methane flux rose with soil moisture, and the wettest sites were
+the active ones. That's a satisfying result over a thousand square metres of floodplain. It's also a
+trap. The processes that produce methane happen in anoxic microsites millimetres across. Moisture
+gradients running for kilometres switch those microsites on and off. You can't put a chamber on
+every hillside of a 6,000 km&sup2; watershed.</p>
+    <p>So I stopped asking about methane and asked a mapping question instead. If you can't measure the
+subsurface everywhere, can you infer it? The whole project rests on
+<strong>vegetation as a sensor</strong>: roots connect subsurface moisture to the canopy, plants
+integrate the water available to them over a whole season, and a satellite can watch that
+integration happen. Greenness is not moisture. But the <em>timing</em> and <em>shape</em> of a
+season of greenness carries information about the moisture underneath it, and unlike a soil probe, a
+satellite covers every pixel of the valley, every year, for free.</p></div>
+
+    <!-- Metadata row, design §16. The four dt labels are structural (architecture
+         §5 fixes the field set: Project type · Status · Domain · Technologies);
+         the four values are copy slots. -->
+    <dl class="metadata">
+      <div><dt>Type</dt>
+        <!-- COPY: 02-thesis §1 metadata project type -->
+        <dd>Master's research</dd></div>
+      <div><dt>Status</dt>
+        <!-- COPY: 02-thesis §1 metadata status -->
+        <dd>Thesis in progress</dd></div>
+      <div><dt>Domain</dt>
+        <!-- COPY: 02-thesis §1 metadata domain -->
+        <dd>Water resources</dd></div>
+      <div><dt>Tech</dt>
+        <!-- COPY: 02-thesis §1 metadata technologies -->
+        <dd>Sentinel-2 &middot; R &middot; Python &middot; GEE</dd></div>
+    </dl>
+
+    <!-- HERO VISUAL — F8 vwc-mean-cv, named "(hero / flagship)" in 02-thesis
+         COPY.md §8. Only image on this page that loads eagerly. -->
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F8 alt text -->
+      <img src="/assets/images/thesis/vwc-mean-cv.webp" width="1400" height="1044"
+           alt="Two-panel map: mean predicted 10 m soil moisture across the study area, and the year-to-year coefficient of variation of those predictions."
+           fetchpriority="high" loading="eager" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F8 plain-language takeaway -->
+        <span class="figure__takeaway">The output: continuous 10 m soil moisture for ground nobody can walk, and a companion surface
+showing where the prediction is steady from year to year and where it swings.</span>
+        <!-- COPY: 02-thesis §8 F8 technical caption -->
+        <span class="figure__tech">(a) Mean predicted volumetric water content, 2018&ndash;2025, from the 2018-trained model.
+(b) Inter-annual coefficient of variation of the same predictions. Because the topographic and
+vegetation-community inputs are held fixed across years, panel (b) is a sensitivity surface for the
+year-varying satellite term. It is not a map of model accuracy and not observed field variability.</span>
+      </figcaption>
+    </figure>
+  </header>
+
+  <!-- -------------------------------------------------------------- METHOD -->
+  <section class="project__section container" aria-labelledby="method-h">
+    <div class="prose">
+      <!-- COPY: 02-thesis §2 method H2 -->
+      <h2 id="method-h">How it works</h2>
+      <!-- COPY: 02-thesis §2 method paragraphs -->
+      <p>I turn ten years of satellite imagery into a small set of vegetation-timing measurements, then
+relate those to field soil-moisture readings with a model built to be tested on sites it has never
+seen. That last clause is the design constraint that shaped everything else: a map is only worth
+making if the model behind it works somewhere nobody sampled.</p>
+      <p>A word on each half. On the satellite side I fit a third-order Fourier harmonic regression to every
+pixel's NDVI record, one fit per year, which turns a ragged, cloud-gapped series of scene-dates into
+a smooth seasonal curve you can actually measure. From that curve come the phenology metrics: how
+green a pixel was in June, how green it got at its peak, how green it stayed in September, and how
+far it swung between them. The field half is 437 soil-moisture observations across 17 sites. The
+topographic baseline the vegetation signal has to beat is HAND (height above nearest drainage),
+computed from a LiDAR DEM. That's the standard physically-grounded answer to "where does water
+collect?"</p>
+      <p>The two halves meet in a pooled linear mixed-effects model with a random intercept per site, fit in
+R with lme4. I validate it leave-one-site-out: hold a whole site back, fit on the rest, predict the
+held-out site from the fixed effects only. No site intercept, because a new location on a map
+doesn't come with one. That's a deliberately unflattering test, and it's the only one that resembles
+what the model has to do once I deploy it as a raster.</p>
+    </div>
+
+    <!-- Method diagram, design §13. These seven steps are the pipeline itself,
+         fixed verbatim by architecture §5B (including the honest tilde on ~419),
+         so they ship LITERALLY — they are structure, not prose. -->
+    <figure class="method" aria-label="Method pipeline">
+      <ol class="method__flow">
+        <li class="method-step">~419 Sentinel-2 scene-dates (2016&ndash;2025)</li>
+        <li class="method-step">per-pixel 3rd-order Fourier harmonic regression</li>
+        <li class="method-step">phenology metrics: June mean, Peak NDVI, Sep mean, seasonal amplitude</li>
+        <li class="method-step">437 soil-moisture observations &middot; 17 sites</li>
+        <li class="method-step">pooled linear mixed-effects model (site random intercepts)</li>
+        <li class="method-step">leave-one-site-out validation</li>
+        <li class="method-step method-step--out">annual 10 m VWC maps</li>
+      </ol>
+    </figure>
+
+    <!-- Secondary depth ONLY (design §16): full specification, extra metrics and
+         the two secondary figures F10/F11. The essential method above stays
+         visible and is never hidden behind this click. -->
+    <details class="disclosure">
+      <!-- COPY: 02-thesis §2 disclosure summary label -->
+      <summary>Model specification and supporting analyses</summary>
+      <div class="disclosure__body">
+        <!-- COPY: 02-thesis §2 disclosure body (model specification, extra metrics) -->
+        <p><strong>Specification.</strong> The deployed model is
+<code>VWC ~ wetness index + vegetation community + Peak NDVI + (1 | site)</code>, fit with lme4 in R.
+Vegetation community enters as a between-site fixed effect: sites in different plant communities sit
+at different moisture levels, and telling the model which community a location belongs to keeps that
+offset off the spectral term.</p>
+        <p><strong>Metric selection.</strong> I entered candidate spectral predictors one at a time and scored
+them under leave-one-site-out cross-validation rather than by in-sample fit. Peak NDVI won on every
+out-of-site measure.</p>
+        <p><strong>The PCMA residual.</strong> The pipeline also produces a phenology-conditioned moisture
+anomaly (PCMA): a per-year regression of late-season NDVI on early-season phenology and vegetation
+class, whose per-pixel residual I read as a moisture anomaly. It's a genuinely useful diagnostic
+product. The residual field is spatially coherent (variogram range ~274 m, roughly 65% of its
+variance spatially structured) and stable year to year. But in the head-to-head it lost. Peak NDVI
+out-predicted the PCMA residual at held-out sites on every metric, and adding the residual on top of
+Peak NDVI bought nothing. The simpler metric carries the transferable signal. I'm reporting that as
+a result, not hiding it as a failure.</p>
+        <p><strong>The snowmelt bridge.</strong> A separate analysis at SNOTEL station 380 supplies the
+mechanistic <em>why</em>. Deep soil moisture (20 in) tracks snowmelt <em>duration</em>
+(r = +0.909, p = 0.012) and 7-day maximum melt <em>rate</em> (r = +0.831, p = 0.040), but not peak
+snow-water equivalent. Melt dynamics recharge the deep soil, not snowpack size, and deep moisture is
+what feeds the early-season productivity the phenology metrics later detect. Six water years.
+Exploratory, and labelled that way in the manuscript.</p>
+        <p><strong>Full pipeline, notebooks and figure crosswalk:</strong> see the repository.</p>
+
+        <figure class="figure">
+          <!-- COPY: 02-thesis §8 F10 alt text -->
+          <img src="/assets/images/thesis/pcma-residuals.webp" width="1400" height="1272"
+               alt="Three panels: a map of mean phenology-conditioned moisture anomaly residuals, a map of how consistently each pixel's residual keeps the same sign across years, and a semivariogram." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <!-- COPY: 02-thesis §8 F10 takeaway -->
+            <span class="figure__takeaway">The PCMA residual field is a coherent, repeatable pattern rather than noise. A real anomaly surface,
+even though it lost the head-to-head to Peak NDVI.</span>
+            <!-- COPY: 02-thesis §8 F10 technical caption -->
+            <span class="figure__tech">(a) Mean PCMA residual, 2018&ndash;2025 (blue wetter than expected, red drier). (b) Modal-sign
+agreement across the eight annual residuals. (c) Empirical semivariogram of the mean residual. A
+diagnostic of the residual field's internal structure, not independent validation against field
+moisture.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure">
+          <!-- COPY: 02-thesis §8 F11 alt text -->
+          <img src="/assets/images/thesis/snowmelt-bridge.webp" width="1400" height="1266"
+               alt="Four panels relating snowmelt duration, melt rate and peak snow-water equivalent to soil moisture at two depths at a SNOTEL station." loading="lazy" decoding="async">
+          <figcaption class="figure__cap">
+            <!-- COPY: 02-thesis §8 F11 takeaway -->
+            <span class="figure__takeaway">It is how fast and how long the snow melts, not how much fell, that recharges the deep soil the
+vegetation later draws on.</span>
+            <!-- COPY: 02-thesis §8 F11 technical caption -->
+            <span class="figure__tech">SNOTEL station 380: deep (20 in) soil moisture against snowmelt duration and 7-day maximum melt
+rate, and against peak snow-water equivalent. Shallow (2 in) moisture shown for contrast. Six water
+years, exploratory, small-n.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </details>
+  </section>
+
+  <!-- ---------------------------------------------------------- HIGHLIGHTS -->
+  <section class="project__section container" aria-labelledby="hi-h">
+    <div class="prose">
+      <!-- COPY: 02-thesis §3 highlights H2 -->
+      <h2 id="hi-h">What it found</h2>
+    </div>
+    <!-- Design §11.2: quantitative cards (stat + label) then the qualitative
+         .highlight--text variant, which spans the full grid row. Architecture
+         §5B: lead with the transferability inversion. -->
+    <ul class="highlights">
+      <li class="highlight">
+        <!-- COPY: 02-thesis §3 highlight 1 stat -->
+        <span class="highlight__stat">18%</span>
+        <!-- COPY: 02-thesis §3 highlight 1 label -->
+        <span class="highlight__label">skill lost when predicting at a site the model has never seen</span>
+      </li>
+      <li class="highlight">
+        <!-- COPY: 02-thesis §3 highlight 2 stat -->
+        <span class="highlight__stat">10 m</span>
+        <!-- COPY: 02-thesis §3 highlight 2 label -->
+        <span class="highlight__label">resolution, one map per year, 2018&ndash;2025</span>
+      </li>
+      <li class="highlight">
+        <!-- COPY: 02-thesis §3 highlight 3 stat -->
+        <span class="highlight__stat">437</span>
+        <!-- COPY: 02-thesis §3 highlight 3 label -->
+        <span class="highlight__label">field soil-moisture observations across 17 sites</span>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 02-thesis §3 transferability callout title -->
+        <h3 class="highlight__title">Transferability is the story</h3>
+        <!-- COPY: 02-thesis §3 transferability callout body -->
+        <p>Peak NDVI is the strongest predictor at new sites even though it's the weakest predictor within any
+single site. Drop it from the model and in-sample fit barely notices, because it's the smallest of
+the three contributors. Drop it and ask the model to predict a site it was never fit on, and it
+becomes the largest. The metric that looks least useful when you check your work is the one that
+makes the map work. In-sample importance is a misleading guide to what a predictor is worth in
+deployment, and that generalises well beyond this watershed.</p>
+      </li>
+      <li class="highlight highlight--text">
+        <!-- COPY: 02-thesis §3 method-rigor callout title -->
+        <h3 class="highlight__title">The numbers behind that</h3>
+        <!-- COPY: 02-thesis §3 method-rigor callout body -->
+        <p>The full model reaches an in-sample R&sup2; of 0.415. Under leave-one-site-out validation it holds
+at 0.340, an 18% relative loss, with a Spearman &rho; of 0.528 and an RMSE of about 7% VWC. Losing
+under a fifth of your skill when the location changes is what makes a raster defensible rather than
+decorative.</p>
+      </li>
+    </ul>
+
+    <!-- The transferability figure belongs with the finding it evidences. F6
+         exists on disk, so it is shipped (COPY.md §8 F6 says omit ONLY if the
+         source figure is missing). -->
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F6 alt text -->
+      <img src="/assets/images/thesis/transferability.webp" width="1400" height="1266"
+           alt="Bar chart of the percentage of model skill lost when each predictor is dropped, shown separately for within-site fit and for leave-one-site-out prediction." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F6 takeaway -->
+        <span class="figure__takeaway">The inversion, in one chart: Peak NDVI contributes least when the model is scored on sites it was
+fit on, and most when it is scored on sites it was not.</span>
+        <!-- COPY: 02-thesis §8 F6 technical caption -->
+        <span class="figure__tech">Drop-one (LOVO) contribution for Peak NDVI, topographic wetness and vegetation community, in-sample
+versus leave-one-site-out, 2018: the percentage of full-model skill lost when each predictor is
+removed. Predictors are correlated, so each value is the skill a term adds on top of the other two
+in this model, not an independent share of variance.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ------------------------------------------------- ASSETS / EVIDENCE ---
+       Architecture §5B sequences these as a visual argument:
+       study area / field photo -> "vegetation as a sensor" concept -> NDVI
+       phenology curve -> per-site R2 improvement -> LOSO validation ->
+       hillslope correction. The flagship VWC map is already the hero above.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="as-h">
+    <div class="prose">
+      <!-- COPY: 02-thesis §4 assets H2 -->
+      <h2 id="as-h">In the maps</h2>
+      <!-- COPY: 02-thesis §4 assets intro paragraph -->
+      <p>The argument runs as a sequence of figures: where the data came from, why vegetation should carry a
+moisture signal at all, what the satellite actually measures, where the spectral term helps, whether
+it survives being tested on unseen sites, and what falls out the far end.</p>
+    </div>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F1 alt text -->
+      <img src="/assets/images/thesis/study-area-map.webp" width="1400" height="990"
+           alt="Study-area map showing soil-moisture sampling locations and model predictor surfaces across the East River watershed." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F1 takeaway -->
+        <span class="figure__takeaway">The sampling network sits in the upper East River valley near Crested Butte, Colorado, a
+snowmelt-driven system where the wet ground and the walkable ground are not the same ground.</span>
+        <!-- COPY: 02-thesis §8 F1 technical caption -->
+        <span class="figure__tech">Field sampling locations over a 10 m hillshade, with the East River and Slate River. Insets over the
+Pump House cluster show the two model predictor surfaces: annual peak NDVI from Sentinel-2, and the
+HAND-based topographic wetness index. Any counts printed on this figure are figure-level and differ
+from the modelled subset described in the method.</span>
+      </figcaption>
+    </figure>
+
+    <!-- Field photograph, portrait 800x1066. Constrained to the reading column
+         so a tall photo does not dominate the page (design §11 .figure--prose). -->
+    <figure class="figure figure--prose">
+      <!-- COPY: 02-thesis §4 soil-core photo alt text -->
+      <img src="/assets/images/thesis/photo-soil-core-sampling.webp" width="800" height="1066"
+           alt="A gloved hand beside a small pit dug into stony meadow ground, with water standing in the bottom of the hole and excavated cobbles piled at its edge." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §4 soil-core photo takeaway -->
+        <span class="figure__takeaway"></span>
+        <!-- COPY: 02-thesis §4 soil-core photo technical caption -->
+        <span class="figure__tech">Soil core sampling in the field. Water stands in the open hole, and the material dug out of it is
+coarse and stony.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F2 alt text -->
+      <img src="/assets/images/thesis/vegetation-sensor.webp" width="1400" height="764"
+           alt="Concept diagram: plant roots connect subsurface soil moisture to the canopy, so satellite-observed greenness carries information about the moisture below." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F2 takeaway -->
+        <span class="figure__takeaway">Roots link what is below the surface to what a satellite can see above it. That is the whole premise
+in one picture.</span>
+        <!-- COPY: 02-thesis §8 F2 technical caption -->
+        <span class="figure__tech">Conceptual diagram of "vegetation as a sensor." Illustrative, not a data product or a measured
+result.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F3 alt text -->
+      <img src="/assets/images/thesis/phenology-curve.webp" width="1400" height="822"
+           alt="A season of NDVI observations for one location with a smooth harmonic curve fitted through them." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F3 takeaway -->
+        <span class="figure__takeaway">A ragged, cloud-gapped year of satellite observations becomes a smooth seasonal curve you can take
+measurements off.</span>
+        <!-- COPY: 02-thesis §8 F3 technical caption (must carry the "illustrative
+             example" caveat — it is 2022 meadow pixels, not the whole record) -->
+        <span class="figure__tech">Third-order Fourier harmonic regression fitted to a per-pixel Sentinel-2 NDVI time series,
+2016&ndash;2025. Illustrative example for one location. Not a watershed-wide signal and not a
+moisture measurement.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F4 alt text -->
+      <img src="/assets/images/thesis/site-improvement.webp" width="1400" height="1002"
+           alt="Scatter plot comparing per-site R-squared from a topographic-wetness-only model against a model that also includes a spectral metric, with a one-to-one reference line." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F4 takeaway -->
+        <span class="figure__takeaway">Adding the best site-specific spectral metric raises adjusted per-site R&sup2; where the topographic
+baseline is weakest, and which metric helps is site-specific.</span>
+        <!-- COPY: 02-thesis §8 F4 technical caption -->
+        <span class="figure__tech">Per-site adjusted R&sup2;, wetness-only (x-axis) versus wetness plus the best site-specific spectral
+metric (y-axis), with a 1:1 line. This is within-site fit, not transfer to new sites, and per-site
+values are exploratory at small n.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F5 alt text -->
+      <img src="/assets/images/thesis/loso-validation.webp" width="1400" height="1206"
+           alt="Observed versus predicted soil moisture for sites held out of model fitting, plotted against a one-to-one line." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F5 takeaway -->
+        <span class="figure__takeaway">Every point here is a site the model had never seen when it made the prediction.</span>
+        <!-- COPY: 02-thesis §8 F5 technical caption -->
+        <span class="figure__tech">Leave-one-site-out observed versus predicted volumetric water content, 2018, from the pooled mixed
+model; held-out sites are predicted from the fixed effects only. One validation year shown.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--wide">
+      <!-- COPY: 02-thesis §8 F7 alt text -->
+      <img src="/assets/images/thesis/hillslope-lift.webp" width="1400" height="828"
+           alt="Median predicted soil moisture along elevation and slope gradients, comparing the full model with a topography-only baseline." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F7 takeaway -->
+        <span class="figure__takeaway">Spectral metrics correct topographic underestimation on hillslopes. The lift lands on steeper,
+higher terrain, exactly where terrain alone has least to say.</span>
+        <!-- COPY: 02-thesis §8 F7 technical caption -->
+        <span class="figure__tech">Median predicted VWC with interquartile ribbons along elevation and slope, full model
+(Peak NDVI + topographic wetness + community) versus a topography-and-community null. Descriptive
+full-model versus topographic-baseline comparison, not uniform field validation, and the highest
+slope and elevation bins are small-n.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- --------------------------------------------------- COMPANION SCIENCE -
+       Architecture §5B: its own section, clearly secondary. Scientific context,
+       not the deliverable.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="co-h">
+    <div class="prose">
+      <!-- COPY: 02-thesis §5 companion science H2 -->
+      <h2 id="co-h">A companion strand: imaging the microsites directly</h2>
+      <!-- COPY: 02-thesis §5 companion science paragraphs -->
+      <p>Running alongside the mapping work is a strand that attacks the same question from the opposite end
+of the scale. Using synchrotron &micro;-X-ray fluorescence at Stanford's SLAC, we imaged Fe(II)/Fe(III)
+redox chemistry inside intact soil cores (the millimetre-scale anoxic microsites themselves) and
+correlated that chemistry with lab methane-flux incubations on the same material.</p>
+      <p>This is scientific context for why moisture is the variable worth mapping. It is not validation of
+the maps and it is not the deliverable. It's here because it's the other half of how I think about
+the problem: I've collected the field and lab data that GIS layers are made of (flux chambers, soil
+cores, porewater chemistry), not just downloaded them.</p>
+    </div>
+
+    <!-- F9 slac-redox is 1160x1849 (tall) and carries a BURNED-IN credit line
+         "Photo Credit: V. Noel, E. Paulus" at the bottom of the image: the
+         imaging is co-authors' work. It is SCALED, NEVER CROPPED — do not add
+         object-fit/aspect-ratio cropping here or the credit is destroyed.
+         .figure--prose only constrains max-width; the whole frame still renders. -->
+    <figure class="figure figure--prose">
+      <!-- COPY: 02-thesis §8 F9 alt text -->
+      <img src="/assets/images/thesis/slac-redox.webp" width="1160" height="1849"
+           alt="Synchrotron micro-X-ray fluorescence images of an intact soil core showing the distribution of Fe(II) and Fe(III)." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §8 F9 takeaway -->
+        <span class="figure__takeaway">The microsites that make methane, imaged directly. This is the scale the satellite will never see.</span>
+        <!-- COPY: 02-thesis §8 F9 technical caption (credit is burned into the image) -->
+        <span class="figure__tech">Synchrotron &micro;-XRF mapping of Fe(II)/Fe(III) redox chemistry in intact soil cores at Stanford's
+SLAC. Companion laboratory science and scientific context. It does not validate the mapping
+products.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="figure figure--prose">
+      <!-- COPY: 02-thesis §5 methane-flux photo alt text -->
+      <img src="/assets/images/thesis/photo-methane-flux-sampling.webp" width="800" height="1066"
+           alt="A white flux chamber sitting on grass at the edge of a willow thicket, with a ribbed hose, a marker flag, a clipboard holding a data sheet and a pair of work gloves beside it. Conifers and a pointed peak stand in the background under a blue sky." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- COPY: 02-thesis §5 methane-flux photo takeaway -->
+        <span class="figure__takeaway"></span>
+        <!-- COPY: 02-thesis §5 methane-flux photo technical caption -->
+        <span class="figure__tech">Methane flux gas sampling in the field. A survey chamber seated on meadow ground, with a paper data
+sheet beside it.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ------------------------------------------- HONEST LIMITS / STATUS ---- -->
+  <section class="project__section container" aria-labelledby="lm-h">
+    <div class="prose">
+      <!-- COPY: 02-thesis §6 honest limits H2 -->
+      <h2 id="lm-h">Honest limits &amp; status</h2>
+      <div class="limits">
+        <p class="limits__label">Honest limits</p>
+        <ul>
+          <!-- COPY: 02-thesis §6 limit 1 (manuscripts in preparation) -->
+          <li>A first-author manuscript is <strong>in preparation</strong>: not submitted, not under review, not published. It is intended for MDPI <em>Remote Sensing</em>.</li>
+          <!-- COPY: 02-thesis §6 limit 2 (skill above the VWC ceiling) -->
+          <li>Prediction skill degrades above roughly 24% volumetric water content: the wettest ground is systematically under-predicted, a ceiling a linear model cannot clear with these predictors.</li>
+          <!-- COPY: 02-thesis §6 limit 3 (single-watershed calibration) -->
+          <li>Calibrated on one watershed. Leave-one-site-out is cross-validation inside a single sampling network, not independent regional validation. Transfer beyond this basin is untested.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------ LINKS / OUTPUTS -
+       Design §11.4: render an <a> ONLY where a URL is confirmed; otherwise a
+       plain <span class="outputs__row"> with no dead href.
+       The three documents ARE now staged under /assets/docs/ (manuscript, AGU
+       2025 poster, CARD 2026 poster), so those rows ship as ANCHORS with the
+       file type stated in the link text.
+       The thesis repo URL (02-thesis/OPEN.md §57) is now resolved to the public
+       repo github.com/turke6756/MastersThesis, so that row ships as an ANCHOR.
+       Remaining SPAN with no href: the data products row, which names no URL.
+       The manuscript row text is IN PREPARATION and must never say submitted,
+       under review, accepted or published.
+       ----------------------------------------------------------------------- -->
+  <section class="project__section container" aria-labelledby="ln-h">
+    <div class="prose">
+      <!-- COPY: 02-thesis §7 links H2 -->
+      <h2 id="ln-h">Outputs</h2>
+      <ul class="outputs">
+        <li><a class="outputs__row" href="https://github.com/turke6756/MastersThesis" rel="noopener"><span class="outputs__kind">Repository</span>
+          <!-- COPY: 02-thesis §7 repository row text -->
+          MastersThesis on GitHub</a></li>
+        <li><a class="outputs__row" href="/assets/docs/poster-agu-2025.pdf"><span class="outputs__kind">Poster</span>
+          <!-- COPY: 02-thesis §7 AGU poster row text -->
+          AGU 2025, first author (PDF)</a></li>
+        <!-- No COPY slot exists for the CARD 2026 poster (it postdates 02-thesis
+             §7), so this row uses the plainest factual descriptor of the file. -->
+        <li><a class="outputs__row" href="/assets/docs/poster-card-2026.pdf"><span class="outputs__kind">Poster</span>
+          CARD 2026 thesis poster (PDF)</a></li>
+        <li><a class="outputs__row" href="/assets/docs/manuscript-remote-sensing-inprep.pdf"><span class="outputs__kind">Manuscript</span>
+          <!-- COPY: 02-thesis §7 manuscript row text (never "submitted"/"published") -->
+          One first-author manuscript, in preparation (PDF)</a></li>
+        <li><span class="outputs__row"><span class="outputs__kind">Data products</span>
+          <!-- COPY: 02-thesis §7 data products row text -->
+          Annual 10 m predicted VWC rasters, 2018&ndash;2025, plus inter-annual variability surfaces</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT — fixed order B -> A -> C (design §11.5).
+       B page: prev = All work, next = Cover Crop Explorer. -->
+  <nav class="pager container" aria-label="Projects">
+    <a class="pager__link pager__prev" href="/#work">
+      <span class="pager__dir">&larr; Previous</span><span class="pager__title">All work</span></a>
+    <a class="pager__link pager__next" href="/projects/cover-crop-explorer/">
+      <span class="pager__dir">Next &rarr;</span><span class="pager__title">Cover Crop Explorer</span></a>
+  </nav>
+
+  <!-- CONTACT CTA — required on every project page (design §11.6) -->
+  <section class="contact-cta section--band"><div class="container">
+    <!-- COPY: 02-thesis §10 contact CTA H2 -->
+    <h2>Interested in this work?</h2>
+    <!-- COPY: 02-thesis §10 contact CTA line -->
+    <p class="muted">I'm an early-career environmental data scientist in the SF Bay Area.</p>
+    <div class="contact-cta__actions">
+      <a class="btn btn--primary" href="/#contact">Get in touch</a>
+      <a class="btn btn--ghost" href="/#work">See all work</a>
+    </div>
+  </div></section>
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

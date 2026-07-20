@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 <title> (literal em-dash separator, per that file's conventions note) -->
+<title>Digitizing green space for a stormwater project — Edward Turk</title>
+<!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 META DESCRIPTION -->
+<meta name="description" content="A GIS class assignment. Hand-digitizing campus lawns, walkways and trees off aerial imagery in ArcGIS Pro, with area calculated for every polygon.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/gallery/campus-digitizing/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. The nav has no Coursework item, so Work
+     is the nearest correct target for a deep gallery page. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     GALLERY ENTRY 6 — /gallery/campus-digitizing/
+     Coursework, deliberately subordinate to the three flagship project
+     pages. Structure and class names copied from
+     /projects/soil-moisture/index.html; every class used here already
+     exists in /assets/css/site.css. No class was added or invented.
+     Copy is verbatim from content/06-gis-gallery/ENTRY_PAGES.md Entry 6,
+     with alt text and figure caption verbatim from COPY.md Entry 6.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <header class="project__hero container">
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#coursework">Coursework</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Digitizing green space for a stormwater project</span>
+    </nav>
+
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 META LINE -->
+    <p class="eyebrow">Class assignment &middot; Introduction to GIS &middot; ArcGIS Pro</p>
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 H1 -->
+    <h1>Digitizing green space for a stormwater project</h1>
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 STANDFIRST -->
+    <p class="project__premise lede">The layers the planners needed didn't exist, so the exercise was to draw them.</p>
+  </header>
+
+  <section class="project__section container" aria-labelledby="what-h">
+    <div class="prose">
+      <h2 id="what-h">What it was</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 "What it was" BODY.
+           The last two sentences exist because a reader who reads the alt text
+           may briefly think the course was at CMU (OPEN.md §8). Both are
+           sourced and neither claims Ed studied at CMU.
+           ONE-LINE REVERSAL if a reviewer disagrees: delete both sentences. -->
+      <p>A campus stormwater scenario. Underground detention tanks going in beneath a university mall, and a planning team that needs to know how much permeable surface is up there and where the trees are. None of that existed as data. The aerial is the Carnegie Mellon University main quad, which is the site the exercise uses. The course is USF's.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="how-h">
+    <div class="prose">
+      <h2 id="how-h">How it worked</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 "How it worked" BODY.
+           The area labels in the layout carry no unit anywhere (OPEN.md §4).
+           The copy says "calculated area" and stops. Do not add a unit.
+           See ENTRY_PAGES.md "FOR ED" item 4. -->
+      <p>I digitized straight off the aerial imagery in ArcGIS Pro. Green spaces became polygons, walkways became lines, individual trees became points, all drawn by hand at a working scale close enough to see where the grass actually stops. ArcGIS then calculated the area of each polygon and I labeled every one with its own figure. Drawn December 2024.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="learned-h">
+    <div class="prose">
+      <h2 id="learned-h">What I learned</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 6 "What I learned" BODY.
+           The first two sentences are COPY.md's verbatim; the third extends the
+           same thought and introduces no new fact.
+           ONE-LINE REVERSAL for zero extension: delete the third sentence. -->
+      <p>It's a small exercise. It's also the genuinely manual part of GIS, deciding where a lawn ends and staying consistent about that across a dozen features. The first polygon is easy. The tenth one is where you find out whether the rule you started with was actually a rule.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="fig-h">
+    <div class="prose">
+      <h2 id="fig-h">Figure</h2>
+    </div>
+    <!-- ASSETS.md stages gallery-cmu-greenspace-digitizing.jpg; the shipped
+         WebP derivative is confirmed on disk at 1650x1275. Not blocked. -->
+    <figure class="figure figure--wide">
+      <!-- ALT TEXT: COPY.md Entry 6 ALT TEXT, verbatim and byte-frozen. Do not re-voice. -->
+      <img src="/assets/images/gallery/gallery-cmu-greenspace-digitizing.webp" width="1650" height="1275"
+           alt="Aerial imagery of the Carnegie Mellon University main quad with hand-digitized layers drawn over it: pale green polygons for lawns and green spaces, each labeled with its calculated area, thin white outlines for walkways, and bright green dots for individual trees. A legend, north arrow and metric scale bar sit at the lower left." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- FIGURE CAPTION: COPY.md Entry 6 FIGURE CAPTION, verbatim. -->
+        <span class="figure__takeaway">Green space, walkways and trees digitized from imagery for a campus stormwater runoff project, with each green-space polygon labeled by calculated area. Drawn December 2024.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- LINKS ROW — EMPTY, and renders nothing. ENTRY_PAGES.md Entry 6: this
+       assignment's deliverable was a static layout, not a hosted map. Never
+       guess or reconstruct this URL. If one is ever supplied, the label is
+       "View the live web map". -->
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

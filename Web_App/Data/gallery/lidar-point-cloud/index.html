@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 <title> (literal em-dash separator, per that file's conventions note) -->
+<title>Reading a forest in a LiDAR point cloud — Edward Turk</title>
+<!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 META DESCRIPTION -->
+<meta name="description" content="A LiDAR class exercise in FUSION. Loading a 221,440-point airborne cloud, stretching return intensity, clipping sample plots and measuring tree heights.">
+
+<link rel="canonical" href="https://covercropcalifornia.com/gallery/lidar-point-cloud/">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html. Inline, and BEFORE the
+     stylesheet: this is what applies the stored theme before first paint (no flash)
+     and adds the .js class that reveals the theme toggle and the hamburger. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     The ONE permitted per-page difference (header-footer.html note 2): a STATIC
+     class="is-active" on the Work link. The nav has no Coursework item, so Work
+     is the nearest correct target for a deep gallery page. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a class="is-active" href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     GALLERY ENTRY 7 — /gallery/lidar-point-cloud/
+     Coursework, deliberately subordinate to the three flagship project
+     pages. Structure and class names copied from
+     /projects/soil-moisture/index.html; every class used here already
+     exists in /assets/css/site.css. No class was added or invented.
+     Copy is verbatim from content/06-gis-gallery/ENTRY_PAGES.md Entry 7,
+     with alt text and figure caption verbatim from COPY.md Entry 7.
+     ====================================================================== -->
+<main class="project" id="main">
+
+  <header class="project__hero container">
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/#coursework">Coursework</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Reading a forest in a LiDAR point cloud</span>
+    </nav>
+
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 META LINE -->
+    <p class="eyebrow">Class exercise &middot; Introduction to LiDAR &middot; FUSION / LDV</p>
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 H1 -->
+    <h1>Reading a forest in a LiDAR point cloud</h1>
+    <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 STANDFIRST -->
+    <p class="project__premise lede">A few hundred thousand loose points, and no forest in them until you know what to look at.</p>
+  </header>
+
+  <section class="project__section container" aria-labelledby="what-h">
+    <div class="prose">
+      <h2 id="what-h">What it was</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 "What it was" BODY -->
+      <p>Airborne LiDAR doesn't arrive as a forest. It arrives as a tile of unclassified returns, and the exercise was to work one of those tiles in FUSION, the USDA Forest Service's LiDAR toolkit, until the structure in it became legible. Load it, look at it, cut plots out of it, measure something real off it.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="how-h">
+    <div class="prose">
+      <h2 id="how-h">How it worked</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 "How it worked" BODY.
+           Ed's answer table gives three tree heights with no stated unit
+           (OPEN.md §4), so no number appears here. Do not add one.
+           See ENTRY_PAGES.md "FOR ED" item 5. -->
+      <p>I loaded the raw cloud in FUSION's LIDAR Data Viewer alongside its bare-earth surface, so the ground was there as a reference rather than as guesswork. Then I stretched the return intensity to pull canopy away from open ground. Sample plots came out of the tile through a command-line batch file rather than by clicking, which is the part that would scale to a whole survey. Individual tree heights I measured off the cloud by hand.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="learned-h">
+    <div class="prose">
+      <h2 id="learned-h">What I learned</h2>
+      <!-- COPY: 06-gis-gallery ENTRY_PAGES.md Entry 7 "What I learned" BODY -->
+      <p>Intensity does more than I expected. Canopy and open ground pull apart on return intensity alone, before any point classification runs, which means a lot of the reading you want is already sitting in the raw returns. It's the closest thing in the coursework to the active side of remote sensing, where you're working with the signal the sensor sent rather than the light that happened to be there.</p>
+    </div>
+  </section>
+
+  <section class="project__section container" aria-labelledby="fig-h">
+    <div class="prose">
+      <h2 id="fig-h">Figure</h2>
+    </div>
+    <!-- ASSETS.md stages gallery-lidar-fusion-intensity.png; the shipped WebP
+         derivative is confirmed on disk at 1902x1108. Not blocked. The uncropped
+         derivative is used deliberately: the byte-frozen alt text below cites the
+         status bar reading 221,440 points, which the -cropped variant removes. -->
+    <figure class="figure figure--wide">
+      <!-- ALT TEXT: COPY.md Entry 7 ALT TEXT, verbatim and byte-frozen. Do not
+           re-voice: it deliberately keeps its two semicolons per COPY.md's
+           2026-07-19 note. -->
+      <img src="/assets/images/gallery/gallery-lidar-fusion-intensity.webp" width="1902" height="1108"
+           alt="Screenshot of the FUSION LIDAR Data Viewer showing a side-on view of an airborne LiDAR point cloud against a black background. A dense block of forest canopy on the left gives way to open, textured ground on the right with a handful of isolated conifer crowns rising from it. Points are colored by return intensity on a blue-to-red ramp, keyed to a legend on the left; the status bar reads 221,440 points." loading="lazy" decoding="async">
+      <figcaption class="figure__cap">
+        <!-- FIGURE CAPTION: COPY.md Entry 7 FIGURE CAPTION, verbatim. -->
+        <span class="figure__takeaway">221,440 LiDAR returns colored by intensity in FUSION's data viewer. Canopy and open ground separate out on return intensity alone, before any point classification is applied.</span>
+      </figcaption>
+    </figure>
+
+    <!-- FIGURE PENDING: gallery-lidar-fusion-plot-clip.png — the optional second
+         figure (the clipped 44,354-point plot in 3D). ENTRY_PAGES.md Entry 7
+         marks it NOT COMMITTED and NEEDS A DECISION, and its ALT TEXT is
+         explicitly NOT WRITTEN, because alt text must be written by someone who
+         opens the file. The file is staged on disk, so adopting it is cheap.
+         See ENTRY_PAGES.md "FOR ED" item 21.
+         Draft caption held ready by ENTRY_PAGES.md if it is adopted:
+         "A 44,354-point plot clipped out of the tile and rendered in three
+         dimensions, points colored by height above the bare-earth surface." -->
+  </section>
+
+  <section class="project__section container" aria-labelledby="ln-h">
+    <div class="prose">
+      <h2 id="ln-h">Links</h2>
+      <!-- LINKS ROW — ONE LINK, FILLED 2026-07-20 per ENTRY_PAGES.md Entry 7.
+           This is the Walker Creek StoryMap, carried here as SAME-COURSE
+           EVIDENCE and not as this entry's own deliverable. It is deliberately
+           the same URL Entry 2 (/gallery/walker-creek/) uses: this page is the
+           viewer screenshot, the exercise in learning to read a point cloud, and
+           Entry 2 is what that skill was then used for. Ed ruled this on
+           2026-07-20. The apparent duplicate is correct. Do not "fix" it and do
+           not delete it. -->
+      <ul class="outputs">
+        <li><a class="outputs__row" href="https://storymaps.arcgis.com/stories/1abc149ee9884bd1b0dbcad681acaa6e" rel="noopener"><span class="outputs__kind">StoryMap</span>
+          The analysis from this course</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer. Carries id="contact" on every page:
+     the homepage IntersectionObserver and every /#contact CTA resolve here.
+     The three contact URLs are confirmed (01-home-shared/ASSETS.md, confirmed
+     by Ed 2026-07-19). The resume line stays commented until Ed confirms the
+     variant. ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

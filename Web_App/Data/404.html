@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Edward Turk">
+
+<!-- COPY: 01-home-shared PART 0 404 <title> -->
+<title>Page not found — Edward Turk</title>
+<!-- COPY: 01-home-shared PART 0 404 meta description -->
+<meta name="description" content="That page doesn't exist. Head back to Edward Turk's selected work in remote sensing, GIS, and water resources.">
+
+<!-- No canonical on an error page: it is not a real address. -->
+<meta name="robots" content="noindex">
+
+<!-- SHARED CHROME BLOCK 1 — see /_shared/header-footer.html -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<!-- ===== SHARED CHROME BLOCK 2 — header + nav. Byte-identical on every page.
+     No .is-active anywhere: this page is not a section and not a project. ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Edward Turk</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <span class="theme-toggle__icon" aria-hidden="true">&#9790;</span></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section">
+    <div class="container container--prose">
+      <!-- GAP (copy pour 2026-07-20): the three body slots below have NO source block.
+           01-home-shared/COPY.md PART 4 explicitly disclaims them ("The 404's own body
+           copy belongs to whoever owns cookbook §2D — see OPEN.md item 6"), and
+           01-home-shared/OPEN.md:81 confirms "I also wrote nothing for the 404 page body".
+           No other content/ file supplies them. Placeholders left in place deliberately
+           rather than invented. Title + meta description above DID resolve (PART 0). -->
+      <!-- COPY: 01-home-shared PART 4 404 eyebrow -->
+      <p class="eyebrow">404</p>
+      <!-- COPY: 01-home-shared PART 4 404 H1 -->
+      <h1>Page not found</h1>
+      <!-- COPY: 01-home-shared PART 4 404 body -->
+      <p class="lede">The link is broken or the page moved. Head back to the homepage or go straight to the selected work.</p>
+      <div class="contact-cta__actions">
+        <a class="btn btn--primary" href="/#work">View selected work</a>
+        <a class="btn btn--ghost" href="/">Home</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== SHARED CHROME BLOCK 3 — footer, carrying id="contact". ===== -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand">Edward Turk</p>
+      <p class="muted">Environmental Data Scientist &middot; SF Bay Area</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+      <a href="mailto:turke6756@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/edward-turk-7a2008b8" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/turke6756" rel="noopener">GitHub</a>
+      <!-- <a href="/assets/docs/resume.pdf" download="Edward-Turk-Resume.pdf">R&eacute;sum&eacute; (PDF)</a> -->
+    </nav>
+    <nav class="site-footer__projects" aria-label="Projects">
+      <a href="/projects/soil-moisture/">Soil-moisture mapping</a>
+      <a href="/projects/cover-crop-explorer/">Cover Crop Explorer</a>
+      <a href="/projects/lares/">Lares Agent IDE</a>
+    </nav>
+    <p class="site-footer__meta muted">&copy; <span data-year>2026</span> Edward Turk</p>
+  </div>
+</footer>
+
+<!-- ===== SHARED CHROME BLOCK 4 ===== -->
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
